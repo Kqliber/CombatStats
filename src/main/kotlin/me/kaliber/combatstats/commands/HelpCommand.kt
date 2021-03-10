@@ -21,11 +21,10 @@ class HelpCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     @Permission("combatstats.help")
     fun helpCommand(sender: CommandSender)
     {
-        val message = listOf("&9CombatStats Help &8(&7v${plugin.description.version}&8)",
+        listOf("&9CombatStats Help &8(&7v${plugin.description.version}&8)",
             "&b/cs &8- &7Display plugin information",
             "&b/cs help &8- &7Display plugin commands",
             "&b/cs reload &8- &7Reload configuration file",
-            "&b/cs stats <player> &8- &7Display player statistics")
-        message.executeMsg(sender as Player)
+            "&b/cs stats <player> &8- &7Display player statistics").executeMsg(sender as Player)
     }
 }
