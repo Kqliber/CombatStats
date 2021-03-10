@@ -1,7 +1,7 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
-import me.kaliber.combatstats.color
+import me.kaliber.combatstats.extensions.msg
 
 import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Alias
@@ -23,13 +23,13 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     @Permission("combatstats.admin")
     fun reload(sender: CommandSender)
     {
-        val message = "&bConfig reloaded.".color()
+        val message = "&bConfig reloaded."
 
         if (file.exists())
         {
             plugin.reloadConfig()
             plugin.saveConfig()
-            sender.sendMessage(message)
+            sender.msg(message)
             return
         }
 
@@ -38,6 +38,6 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         plugin.saveDefaultConfig()
         plugin.saveConfig()
 
-        sender.sendMessage(message)
+        sender.msg(message)
     }
 }

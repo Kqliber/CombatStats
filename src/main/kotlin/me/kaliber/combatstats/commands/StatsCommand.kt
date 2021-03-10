@@ -1,8 +1,7 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
-import me.kaliber.combatstats.executeMsg
-import me.kaliber.combatstats.msg
+import me.kaliber.combatstats.extensions.msg
 
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
@@ -20,18 +19,21 @@ class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
 
     @SubCommand("stats")
     @Permission("combatstats.stats")
-    fun stats(sender: CommandSender, @Optional arg: String?) {
-        if (sender !is Player) {
+    fun stats(sender: CommandSender, @Optional arg: String?)
+    {
+        if (sender !is Player)
+        {
             sender.sendMessage("Player command only.")
             return
         }
+
         val message = plugin.config.getStringList("stats-command")
         if (arg == null)
         {
-            return message.executeMsg(sender)
+            return message.msg(sender)
         }
 
         val playerArg = Bukkit.getOfflinePlayer(arg)
-        return message.forEach { sender.msg(playerArg, it) }
+        return sender.msg(playerArg, message)
     }
 }

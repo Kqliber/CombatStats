@@ -1,10 +1,9 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
-import me.kaliber.combatstats.executeMsg
+import me.kaliber.combatstats.extensions.msg
 
 import org.bukkit.command.CommandSender
-import org.bukkit.entity.Player
 
 import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Alias
@@ -22,6 +21,6 @@ class MainCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     fun mainCommand(sender: CommandSender)
     {
         listOf("&bCombatStats &7version &f${plugin.description.version}",
-               "&7Created by: &bKaliber").executeMsg(sender as Player)
+               "&7Created by: &bKaliber").msg(sender)
     }
 }

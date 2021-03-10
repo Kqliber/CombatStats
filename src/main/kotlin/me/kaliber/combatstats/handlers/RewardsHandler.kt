@@ -1,11 +1,11 @@
 package me.kaliber.combatstats.handlers
 
-import me.kaliber.combatstats.executeCmd
-import me.kaliber.combatstats.executeMsg
+import me.kaliber.combatstats.extensions.msg
+import me.kaliber.combatstats.extensions.executeCmd
 
-import org.bukkit.configuration.file.FileConfiguration
-import org.bukkit.entity.Player
 import org.bukkit.Bukkit
+import org.bukkit.entity.Player
+import org.bukkit.configuration.file.FileConfiguration
 
 class Rewards(private val config: FileConfiguration)
 {
@@ -23,7 +23,7 @@ class Rewards(private val config: FileConfiguration)
         with(config)
         {
             getStringList("rewards.killer.commands").executeCmd(console, killer)
-            getStringList("rewards.killer.messages").executeMsg(killer)
+            getStringList("rewards.killer.messages").msg(killer)
         }
     }
 
@@ -37,7 +37,7 @@ class Rewards(private val config: FileConfiguration)
         with(config)
         {
             getStringList("rewards.player.commands").executeCmd(console, player)
-            getStringList("rewards.player.messages").executeMsg(player)
+            getStringList("rewards.player.messages").msg(player)
         }
     }
 }
