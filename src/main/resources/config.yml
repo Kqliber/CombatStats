@@ -1,0 +1,30 @@
+
+# CombatStats v@version@ by Kaliber
+# This plugin supports PlaceholderAPI placeholders which can be found here:
+# https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
+
+# Internal Placeholders
+# %kills%
+# %killstreak%
+# %killer%
+
+# stats command - including a player argument.
+stats-command:
+  - '&9%player_name%''s Stats &8- &bKillstreak&7: &f%combatstats_killstreak%'
+
+# save the plugin's data - value in seconds.
+save-data-interval: 300
+
+# enable or disable rewards with commands to be executed for each player when a kill happens.
+rewards:
+  enabled: true
+  killer:
+    commands:
+      - 'give %player_name% diamond 10'
+    messages:
+      - '&fYou killed &b%player%&f!'
+  player:
+    commands:
+    - 'eco take %player_name% 10'
+    messages:
+    - '&fYou died to &c%killer%'
