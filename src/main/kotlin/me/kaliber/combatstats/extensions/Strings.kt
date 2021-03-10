@@ -1,11 +1,14 @@
-package me.kaliber.combatstats
+package me.kaliber.combatstats.extensions
 
-import org.bukkit.OfflinePlayer
-import org.bukkit.entity.Player
-import org.bukkit.command.CommandSender
+import me.kaliber.combatstats.CombatStatsPlugin
+
 import org.bukkit.Bukkit
-import net.md_5.bungee.api.ChatColor
+import org.bukkit.entity.Player
+import org.bukkit.OfflinePlayer
+import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
+import net.md_5.bungee.api.ChatColor
+
 import me.clip.placeholderapi.PlaceholderAPI
 
 private val plugin = JavaPlugin.getPlugin(CombatStatsPlugin::class.java)
@@ -22,16 +25,6 @@ fun setMessage(player: OfflinePlayer, message: String): String {
     return PlaceholderAPI.setPlaceholders(player, message.replacePlaceholders(player).color())
 }
 
-fun Player.msg(message: String)
-{
-    sendMessage(setMessage(this, message))
-}
-
-fun CommandSender.msg(player: OfflinePlayer, message: String)
-{
-    sendMessage(setMessage(player, message))
-}
-
 private fun String.replacePlaceholders(player: OfflinePlayer): String
 {
     val user = plugin.usersHandler[player]
@@ -41,18 +34,12 @@ private fun String.replacePlaceholders(player: OfflinePlayer): String
            .replace("%killer%", otherPlayer.name())
 }
 
-fun List<String>.executeCmd(sender: CommandSender, player: Player)
+fun List<String>.msg(sender: CommandSender)
 {
-    forEach()
-    {
-        Bukkit.dispatchCommand(sender, setMessage(player, it))
-    }
+    forEach { sender.sendMessage(it.color()) }
 }
 
-fun List<String>.executeMsg(player: Player)
+fun List<String>.executeCmd(sender: CommandSender, player: Player)
 {
-    forEach()
-    {
-        player.msg(it)
-    }
+    forEach { Bukkit.dispatchCommand(sender, setMessage(player, it)) }
 }
