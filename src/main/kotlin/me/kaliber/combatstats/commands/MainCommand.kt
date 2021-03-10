@@ -21,8 +21,7 @@ class MainCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     @Permission("combatstats.info")
     fun mainCommand(sender: CommandSender)
     {
-        val message = listOf("&bCombatStats &7version &f${plugin.description.version}",
-                             "&7Created by: &bKaliber")
-        message.executeMsg(sender as Player)
+        listOf("&bCombatStats &7version &f${plugin.description.version}",
+               "&7Created by: &bKaliber").executeMsg(sender as Player)
     }
 }
