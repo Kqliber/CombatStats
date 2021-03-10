@@ -9,6 +9,7 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
 {
     private val users = mutableMapOf<UUID, User>()
     private val gson = GsonBuilder().setPrettyPrinting().create()
+    private val data = plugin.dataFolder.resolve("players")
 
     operator fun get(uuid: UUID): User
     {
@@ -28,14 +29,13 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
      */
     internal fun loadUsers()
     {
-        val file = plugin.dataFolder.resolve("players")
-        if (!file.exists())
+        if (!data.exists())
         {
-            file.mkdirs()
-            file.createNewFile()
+            data.mkdirs()
+            data.createNewFile()
         }
 
-        file.listFiles()?.forEach()
+        data.listFiles()?.forEach()
         {
             val uuid = UUID.fromString(it.nameWithoutExtension)
             users[uuid] = gson.fromJson(it.readText(), User::class.java)
@@ -44,7 +44,7 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
 
     internal fun load(uuid: UUID)
     {
-        val file = plugin.dataFolder.resolve("players").resolve("$uuid.json")
+        val file = data.resolve("$uuid.json")
 
         if (!file.exists())
         {
@@ -65,7 +65,7 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
 
     internal fun save(uuid: UUID)
     {
-        val file = plugin.dataFolder.resolve("players").resolve("$uuid.json")
+        val file = data.resolve("$uuid.json")
         if (!file.exists())
         {
             file.parentFile.mkdirs()
