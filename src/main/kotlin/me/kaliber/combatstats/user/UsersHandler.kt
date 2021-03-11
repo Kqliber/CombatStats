@@ -5,11 +5,11 @@ import com.google.gson.GsonBuilder
 import org.bukkit.OfflinePlayer
 import java.util.UUID
 
-class UsersHandler(private val plugin: CombatStatsPlugin)
+class UsersHandler(plugin: CombatStatsPlugin)
 {
     private val users = mutableMapOf<UUID, User>()
     private val gson = GsonBuilder().setPrettyPrinting().create()
-    private val data = plugin.dataFolder.resolve("players")
+    private val userData = plugin.dataFolder.resolve("players")
 
     operator fun get(uuid: UUID): User
     {
@@ -29,13 +29,13 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
      */
     internal fun loadUsers()
     {
-        if (!data.exists())
+        if (!userData.exists())
         {
-            data.mkdirs()
-            data.createNewFile()
+            userData.mkdirs()
+            userData.createNewFile()
         }
 
-        data.listFiles()?.forEach()
+        userData.listFiles()?.forEach()
         {
             val uuid = UUID.fromString(it.nameWithoutExtension)
             users[uuid] = gson.fromJson(it.readText(), User::class.java)
@@ -44,7 +44,7 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
 
     internal fun load(uuid: UUID)
     {
-        val file = data.resolve("$uuid.json")
+        val file = userData.resolve("$uuid.json")
 
         if (!file.exists())
         {
@@ -65,7 +65,7 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
 
     internal fun save(uuid: UUID)
     {
-        val file = data.resolve("$uuid.json")
+        val file = userData.resolve("$uuid.json")
         if (!file.exists())
         {
             file.parentFile.mkdirs()
