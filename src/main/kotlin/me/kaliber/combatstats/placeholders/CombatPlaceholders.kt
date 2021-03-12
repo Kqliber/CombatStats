@@ -15,7 +15,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
 
     override fun getVersion(): String
     {
-        return "1.0"
+        return plugin.description.version
     }
 
     override fun getIdentifier(): String
