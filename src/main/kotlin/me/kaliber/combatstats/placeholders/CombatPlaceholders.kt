@@ -66,7 +66,6 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             "last_kill" -> user.lastKill
             else -> null
         }
-
     }
 
     private fun getTop(input: String): String?
