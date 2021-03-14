@@ -6,10 +6,12 @@ import me.kaliber.combatstats.commands.MainCommand
 import me.kaliber.combatstats.commands.HelpCommand
 import me.kaliber.combatstats.commands.StatsCommand
 import me.kaliber.combatstats.commands.ReloadCommand
+import me.kaliber.combatstats.handlers.LeaderboardHandler
 import me.kaliber.combatstats.listeners.PlayerJoinListener
 import me.kaliber.combatstats.listeners.PlayerQuitListener
 import me.kaliber.combatstats.listeners.PlayerDeathListener
 import me.kaliber.combatstats.placeholders.CombatPlaceholders
+import me.kaliber.combatstats.tasks.UpdateLeaderboardTask
 
 // import me.bristermitten.pdm.SpigotDependencyManager
 import me.mattstudios.mf.base.CommandManager
@@ -19,7 +21,11 @@ class CombatStatsPlugin : JavaPlugin()
 {
 
     private val saveData = SaveDataTask(this)
+    private val updateLeaderboardTask = UpdateLeaderboardTask(this)
+
     val usersHandler = UsersHandler(this)
+    val userData = dataFolder.resolve("players")
+    val leaderboardHandler = LeaderboardHandler(this)
 
     /**
     override fun onLoad()
@@ -34,13 +40,17 @@ class CombatStatsPlugin : JavaPlugin()
 
         loadConfig()
         usersHandler.loadUsers()
-        saveData.runTaskTimer(this, 0L, config.getLong("save-data-interval") / 20)
+
+        val interval = config.getLong("save-data-interval") / 20
+        saveData.runTaskTimer(this, 0L, interval)
+        updateLeaderboardTask.runTaskTimer(this, 0L, interval)
     }
 
     override fun onDisable()
     {
         saveData.cancel()
         saveData.run()
+        updateLeaderboardTask.cancel()
     }
 
     private fun register()

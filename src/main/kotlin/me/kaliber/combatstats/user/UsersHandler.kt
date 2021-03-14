@@ -2,14 +2,16 @@ package me.kaliber.combatstats.user
 
 import me.kaliber.combatstats.CombatStatsPlugin
 import com.google.gson.GsonBuilder
+import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import java.util.UUID
 
 class UsersHandler(plugin: CombatStatsPlugin)
 {
+
     private val users = mutableMapOf<UUID, User>()
     private val gson = GsonBuilder().setPrettyPrinting().create()
-    private val userData = plugin.dataFolder.resolve("players")
+    private val userData = plugin.userData.resolve("players")
 
     operator fun get(uuid: UUID): User
     {
@@ -22,6 +24,21 @@ class UsersHandler(plugin: CombatStatsPlugin)
     operator fun get(player: OfflinePlayer): User
     {
         return get(player.uniqueId)
+    }
+
+    operator fun get(name: String): User
+    {
+        return get(Bukkit.getOfflinePlayer(name))
+    }
+
+    fun getKills(): List<User>
+    {
+        return users.values.distinct().sortedByDescending { it.kills() }
+    }
+
+    fun getKillstreaks(): List<User>
+    {
+        return users.values.distinct().sortedByDescending { it.killstreak }
     }
 
     /**

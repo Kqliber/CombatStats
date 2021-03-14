@@ -4,6 +4,7 @@ import org.bukkit.OfflinePlayer
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.leaderboard.LeaderboardType
 
 class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExpansion()
 {
@@ -55,26 +56,34 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
                 return user.killstreak.toString()
             }
 
-            /**
-             * Add leaderboard again
-            input.startsWith("killstreak_leaderboard_") ->
+            input.startsWith("top_") ->
             {
-                val args = input.substringAfter("killstreak_leaderboard_").split('_')
+                val args = input.substringAfter("top_").split('_')
+                if (args.size > 2)
+                {
+                    return null
+                }
 
-                if (args[0] == "name")
+                val type = LeaderboardType.match(args[0]) ?: return null
+                val leaderboard = plugin.leaderboardHandler.getLeaderboard(type) ?: return null
+                if (args[1] == "name")
                 {
-                    return args[1]
+                    return args[2].toIntOrNull()?.let(leaderboard::getEntry)?.name()
                 }
-                if (args[0] == "score")
+                if (args[1] == "kills")
                 {
-                    return args[1]
+                    return args[2].toIntOrNull()?.let(leaderboard::getEntry)?.kills().toString()
                 }
-                if (args[0] == "find")
-                {
-                    return args[1]
-                }
+                return args[2].toIntOrNull()?.let(leaderboard::getEntry)?.killstreak.toString()
             }
-            **/
+
+            input.startsWith("placement_") ->
+            {
+                val args = input.substringAfter("placement_").split('_')
+                val type = LeaderboardType.match(args[0]) ?: return null
+                val username = plugin.usersHandler[args[1]]
+                return plugin.leaderboardHandler.getLeaderboard(type)?.getPlacement(username).toString()
+            }
 
             input == "last_kill" ->
             {
