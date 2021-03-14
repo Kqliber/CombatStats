@@ -41,55 +41,70 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
         val deaths = user.deaths()
         val kd = if (deaths == 0) kills.toDouble() else kills.toDouble() / deaths.toDouble()
 
-        when {
-            input == "kills" -> return kills.toString()
-            input == "deaths" -> return deaths.toString()
-            input == "kd" -> return kd.toString()
-            input.startsWith("kd_rounded_") ->
-            {
-                val decimalPlace = input.substringAfter("kd_rounded_").toIntOrNull() ?: return null
-                return String.format("%.${decimalPlace}f", kd)
-            }
-
-            input == "killstreak" ->
-            {
-                return user.killstreak.toString()
-            }
-
-            input.startsWith("top_") ->
-            {
-                val args = input.substringAfter("top_").split('_')
-                if (args.size > 2)
-                {
-                    return null
-                }
-
-                val type = LeaderboardType.match(args[0]) ?: return null
-                val leaderboard = plugin.leaderboardHandler.getLeaderboard(type) ?: return null
-                if (args[1] == "name")
-                {
-                    return args[2].toIntOrNull()?.let(leaderboard::getEntry)?.name()
-                }
-                if (args[1] == "kills")
-                {
-                    return args[2].toIntOrNull()?.let(leaderboard::getEntry)?.kills().toString()
-                }
-                return args[2].toIntOrNull()?.let(leaderboard::getEntry)?.killstreak.toString()
-            }
-
-            input.startsWith("placement_") ->
-            {
-                val args = input.substringAfter("placement_").split('_')
-                val type = LeaderboardType.match(args[0]) ?: return null
-                val username = plugin.usersHandler[args[1]]
-                return plugin.leaderboardHandler.getLeaderboard(type)?.getPlacement(username).toString()
-            }
-
-            input == "last_kill" ->
-            {
-                return user.lastKill
-            }
+        if (input.startsWith("kd_rounded"))
+        {
+            return round(kd, input.substringAfter("kd_rounded"))
         }
-        return null
+
+        if (input.startsWith("top_"))
+        {
+            return getTop(input.substringAfter("top_"))
+        }
+
+        if (input.startsWith("placement_"))
+        {
+            return getPlacement(input.substringAfter("placement_"))
+        }
+
+        return when (input) {
+            "kills" -> kills.toString()
+            "deaths" -> deaths.toString()
+            "kd" -> kd.toString()
+
+            "killstreak" -> user.killstreak.toString()
+
+            "last_kill" -> user.lastKill
+            else -> null
+        }
+
+    }
+
+    private fun getTop(input: String): String?
+    {
+        val args = input.substringAfter("top_").split('_')
+        if (args.size < 4)
+        {
+            return null
+        }
+
+        val type = LeaderboardType.match(args[0]) ?: return null
+        val leaderboard = plugin.leaderboardHandler.getLeaderboard(type) ?: return null
+
+        return when (args[1])
+        {
+            "name" -> args[2].toIntOrNull()?.let(leaderboard::getEntry)?.name()
+            "kills" -> args[2].toIntOrNull()?.let(leaderboard::getEntry)?.kills().toString()
+            else -> args[2].toIntOrNull()?.let(leaderboard::getEntry)?.killstreak.toString()
+        }
+    }
+
+    private fun getPlacement(input: String): String?
+    {
+        val args = input.split('_')
+        val type = LeaderboardType.match(args[0]) ?: return null
+        val username = plugin.usersHandler[args[1]]
+
+        return plugin.leaderboardHandler.getLeaderboard(type)?.getPlacement(username).toString()
+    }
+
+    private fun round(number: Double, input: String): String?
+    {
+        if (input.isEmpty())
+        {
+            return String.format("%.2f", number)
+        }
+
+        val decimals = input.substringAfter('_').toIntOrNull() ?: return null
+        return String.format("%.${decimals}f, $number")
     }
 }
