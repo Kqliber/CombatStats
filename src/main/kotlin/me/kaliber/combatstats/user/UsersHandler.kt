@@ -11,7 +11,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
 
     private val users = mutableMapOf<UUID, User>()
     private val gson = GsonBuilder().setPrettyPrinting().create()
-    private val userData = plugin.userData.resolve("players")
+    private val userData = plugin.userData
 
     operator fun get(uuid: UUID): User
     {
