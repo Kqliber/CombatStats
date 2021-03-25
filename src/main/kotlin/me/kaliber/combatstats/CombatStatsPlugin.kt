@@ -24,7 +24,6 @@ class CombatStatsPlugin : JavaPlugin()
     private val updateLeaderboardTask = UpdateLeaderboardTask(this)
 
     val usersHandler = UsersHandler(this)
-    val userData = dataFolder.resolve("players")
     val leaderboardHandler = LeaderboardHandler(this)
 
     /**
