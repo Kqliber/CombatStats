@@ -4,9 +4,6 @@ import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.leaderboard.Leaderboard
 import me.kaliber.combatstats.leaderboard.LeaderboardType
 
-/**
- * find a good way to do this
- */
 class LeaderboardHandler(private val plugin: CombatStatsPlugin)
 {
 
@@ -14,20 +11,17 @@ class LeaderboardHandler(private val plugin: CombatStatsPlugin)
 
     fun update()
     {
-        LeaderboardType.values.forEach()
+        LeaderboardType.values().forEach()
         {
-            if (it == LeaderboardType.KILLS)
+            when(it)
             {
-                leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKills())
-            }
-            else
-            {
-                leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKillstreaks())
+                LeaderboardType.KILLS -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKills())
+                LeaderboardType.KILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKillstreaks())
             }
         }
     }
 
-    fun getLeaderboard(type: LeaderboardType): Leaderboard?
+    operator fun get(type: LeaderboardType): Leaderboard?
     {
         return leaderboard[type]
     }
