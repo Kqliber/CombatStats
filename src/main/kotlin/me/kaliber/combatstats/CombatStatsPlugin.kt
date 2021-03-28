@@ -39,9 +39,8 @@ class CombatStatsPlugin : JavaPlugin()
 
     override fun onDisable()
     {
-        saveData.cancel()
+        server.scheduler.cancelTasks(this)
         saveData.run()
-        updateLeaderboardTask.cancel()
     }
 
     private fun register()
