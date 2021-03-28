@@ -11,6 +11,6 @@ data class Leaderboard(val type: LeaderboardType, val data: List<User>)
 
     fun getPlacement(user: User): Int
     {
-        return data.indexOf(user)
+        return data.indexOf(user) + 1
     }
 }
