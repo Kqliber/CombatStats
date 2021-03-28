@@ -13,7 +13,6 @@ import me.kaliber.combatstats.listeners.PlayerDeathListener
 import me.kaliber.combatstats.placeholders.CombatPlaceholders
 import me.kaliber.combatstats.tasks.UpdateLeaderboardTask
 
-// import me.bristermitten.pdm.SpigotDependencyManager
 import me.mattstudios.mf.base.CommandManager
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -25,13 +24,6 @@ class CombatStatsPlugin : JavaPlugin()
 
     val usersHandler = UsersHandler(this)
     val leaderboardHandler = LeaderboardHandler(this)
-
-    /**
-    override fun onLoad()
-    {
-        SpigotDependencyManager.of(this).loadAllDependencies().join()
-    }
-    **/
 
     override fun onEnable()
     {
