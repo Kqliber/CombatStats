@@ -56,13 +56,12 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             return getPlacement(input.substringAfter("placement_"))
         }
 
-        return when (input) {
+        return when (input)
+        {
             "kills" -> kills.toString()
             "deaths" -> deaths.toString()
             "kd" -> kd.toString()
-
             "killstreak" -> user.killstreak.toString()
-
             "last_kill" -> user.lastKill
             else -> null
         }
@@ -70,30 +69,33 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
 
     private fun getTop(input: String): String?
     {
-        val args = input.substringAfter("top_").split('_')
-        if (args.size < 4)
-        {
-            return null
-        }
+        val (type, info, position) = input.split('_').takeIf { it.size >= 3 } ?: return null
 
-        val type = LeaderboardType.match(args[0]) ?: return null
-        val leaderboard = plugin.leaderboardHandler.getLeaderboard(type) ?: return null
+        val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
+        val user = position.toIntOrNull()?.let(leaderboard::getEntry) ?: return null
 
-        return when (args[1])
+        return when (info)
         {
-            "name" -> args[2].toIntOrNull()?.let(leaderboard::getEntry)?.name()
-            "kills" -> args[2].toIntOrNull()?.let(leaderboard::getEntry)?.kills().toString()
-            else -> args[2].toIntOrNull()?.let(leaderboard::getEntry)?.killstreak.toString()
+            "name" -> user.name()
+            "value" ->
+            {
+                if (leaderboard.type == LeaderboardType.KILLS)
+                {
+                    return user.kills().toString()
+                }
+                user.killstreak.toString()
+            }
+            else -> null
         }
     }
 
     private fun getPlacement(input: String): String?
     {
-        val args = input.split('_')
-        val type = LeaderboardType.match(args[0]) ?: return null
-        val username = plugin.usersHandler[args[1]]
+        val (type, username) = input.split('_').takeIf { it.size >= 2 } ?: return null
+        val user = plugin.usersHandler[username]
+        val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get)
 
-        return plugin.leaderboardHandler.getLeaderboard(type)?.getPlacement(username).toString()
+        return leaderboard?.getPlacement(user).toString()
     }
 
     private fun round(number: Double, input: String): String?
