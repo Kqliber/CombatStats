@@ -3,8 +3,8 @@ package me.kaliber.combatstats.placeholders
 import org.bukkit.OfflinePlayer
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
-import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.leaderboard.LeaderboardType
+import me.kaliber.combatstats.CombatStatsPlugin
 
 class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExpansion()
 {
@@ -93,9 +93,9 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
     {
         val (type, username) = input.split('_').takeIf { it.size >= 2 } ?: return null
         val user = plugin.usersHandler[username]
-        val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get)
+        val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
 
-        return leaderboard?.getPlacement(user).toString()
+        return leaderboard.getPlacement(user).toString()
     }
 
     private fun round(number: Double, input: String): String?
