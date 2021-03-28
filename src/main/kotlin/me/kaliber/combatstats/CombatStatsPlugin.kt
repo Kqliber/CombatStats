@@ -63,7 +63,8 @@ class CombatStatsPlugin : JavaPlugin()
         )
 
         // events
-        listOf(PlayerDeathListener(this),
+        listOf(
+            PlayerDeathListener(this),
             PlayerJoinListener(this),
             PlayerQuitListener(this))
             .forEach { server.pluginManager.registerEvents(it, this) }
