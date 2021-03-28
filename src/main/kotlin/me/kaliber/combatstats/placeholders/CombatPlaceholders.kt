@@ -106,6 +106,6 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
         }
 
         val decimals = input.substringAfter('_').toIntOrNull() ?: return null
-        return String.format("%.${decimals}f, $number")
+        return String.format("%.${decimals}f", number)
     }
 }
