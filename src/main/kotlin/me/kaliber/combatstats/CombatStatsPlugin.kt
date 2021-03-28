@@ -1,6 +1,6 @@
 package me.kaliber.combatstats
 
-import me.kaliber.combatstats.user.UsersHandler
+import me.kaliber.combatstats.handlers.UsersHandler
 import me.kaliber.combatstats.tasks.SaveDataTask
 import me.kaliber.combatstats.commands.MainCommand
 import me.kaliber.combatstats.commands.HelpCommand

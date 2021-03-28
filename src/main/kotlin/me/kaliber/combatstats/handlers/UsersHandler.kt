@@ -1,7 +1,8 @@
-package me.kaliber.combatstats.user
+package me.kaliber.combatstats.handlers
 
 import me.kaliber.combatstats.CombatStatsPlugin
 import com.google.gson.GsonBuilder
+import me.kaliber.combatstats.user.User
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import java.util.UUID
