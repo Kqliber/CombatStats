@@ -2,8 +2,8 @@ package me.kaliber.combatstats.handlers
 
 import me.kaliber.combatstats.CombatStatsPlugin
 import com.google.gson.GsonBuilder
+import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.user.User
-import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import java.util.UUID
 
@@ -27,9 +27,9 @@ class UsersHandler(plugin: CombatStatsPlugin)
         return get(player.uniqueId)
     }
 
-    operator fun get(name: String): User
+    operator fun get(name: String): User?
     {
-        return get(Bukkit.getOfflinePlayer(name))
+        return name.getPlayer()?.let { get(it) }
     }
 
     fun getKills(): List<User>

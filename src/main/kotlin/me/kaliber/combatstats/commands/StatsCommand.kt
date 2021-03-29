@@ -1,11 +1,11 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.extensions.msg
 
-import org.bukkit.Bukkit
-import org.bukkit.entity.Player
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 
 import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Command
@@ -33,7 +33,7 @@ class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
             return message.msg(sender)
         }
 
-        val playerArg = Bukkit.getOfflinePlayer(arg)
+        val playerArg = arg.getPlayer() ?: return sender.msg("Player not found.")
         return sender.msg(playerArg, message)
     }
 }

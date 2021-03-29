@@ -92,7 +92,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
     private fun getPlacement(input: String): String?
     {
         val (type, username) = input.split('_').takeIf { it.size >= 2 } ?: return null
-        val user = plugin.usersHandler[username]
+        val user = plugin.usersHandler[username] ?: return null
         val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
 
         return leaderboard.getPlacement(user).toString()

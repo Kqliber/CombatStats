@@ -24,7 +24,6 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     fun reload(sender: CommandSender)
     {
         val message = "&bConfig reloaded."
-
         if (file.exists())
         {
             plugin.reloadConfig()
