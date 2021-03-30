@@ -1,7 +1,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.31'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     // kotlin
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.31'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.32'
 
     // command framework
     implementation 'me.mattstudios.utils:matt-framework:1.4'
