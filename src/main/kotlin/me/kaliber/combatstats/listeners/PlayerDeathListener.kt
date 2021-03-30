@@ -32,8 +32,8 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
         // running commands and messages in config
         with(Rewards(plugin.config))
         {
-        runKillerCommands(possible)
-        runPlayerCommands(entity)
+        runKillerCommands(possible, entity)
+        runPlayerCommands(entity, possible)
         }
     }
 }
