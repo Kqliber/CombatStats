@@ -1,7 +1,7 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
-import me.kaliber.combatstats.extensions.msg
+import me.kaliber.combatstats.extensions.message
 
 import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Alias
@@ -28,7 +28,7 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         {
             plugin.reloadConfig()
             plugin.saveConfig()
-            sender.msg(message)
+            sender.message(message)
             return
         }
 
@@ -37,6 +37,6 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         plugin.saveDefaultConfig()
         plugin.saveConfig()
 
-        sender.msg(message)
+        sender.message(message)
     }
 }

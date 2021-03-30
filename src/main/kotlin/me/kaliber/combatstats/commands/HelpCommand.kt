@@ -1,7 +1,7 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
-import me.kaliber.combatstats.extensions.msg
+import me.kaliber.combatstats.extensions.message
 
 import org.bukkit.command.CommandSender
 
@@ -24,6 +24,6 @@ class HelpCommand(private val plugin: CombatStatsPlugin) : CommandBase()
             "&b/cs &8- &7Display plugin information",
             "&b/cs help &8- &7Display plugin commands",
             "&b/cs reload &8- &7Reload configuration file",
-            "&b/cs stats <player> &8- &7Display player statistics").msg(sender)
+            "&b/cs stats <player> &8- &7Display player statistics").message(sender)
     }
 }

@@ -20,7 +20,7 @@ fun setMessage(player: OfflinePlayer, message: String): String {
     return PlaceholderAPI.setPlaceholders(player, message.color())
 }
 
-fun List<String>.msg(sender: CommandSender)
+fun List<String>.message(sender: CommandSender)
 {
     forEach { sender.sendMessage(it.color()) }
 }

@@ -2,7 +2,7 @@ package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.extensions.getPlayer
-import me.kaliber.combatstats.extensions.msg
+import me.kaliber.combatstats.extensions.message
 
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -30,10 +30,10 @@ class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         val message = plugin.config.getStringList("stats-command")
         if (arg == null)
         {
-            return message.msg(sender)
+            return message.message(sender)
         }
 
-        val playerArg = arg.getPlayer() ?: return sender.msg("Player not found.")
-        return sender.msg(playerArg, message)
+        val playerArg = arg.getPlayer() ?: return sender.message("Player not found.")
+        return sender.message(playerArg, message)
     }
 }
