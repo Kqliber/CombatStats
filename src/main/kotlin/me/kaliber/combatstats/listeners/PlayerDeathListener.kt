@@ -13,27 +13,21 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
     fun PlayerDeathEvent.onDeath()
     {
         val player = plugin.usersHandler[entity]
-        val possible = entity.killer
+        val killer = entity.killer ?: return player.reset()
 
-        if (possible == null)
-        {
-            player.reset()
-            return
-        }
-
-        val killer = plugin.usersHandler[possible]
+        val user = plugin.usersHandler[killer]
         // entering kill streak statistics
-        killer.killstreak++
+        user.killstreak++
         player.reset()
 
         // set player's last known kill username
-        killer.lastKill = player.name()
+        user.lastKill = player.name()
 
         // running commands and messages in config
         with(Rewards(plugin.config))
         {
-        runKillerCommands(possible, entity)
-        runPlayerCommands(entity, possible)
+        runKillerCommands(killer, entity)
+        runPlayerCommands(entity, killer)
         }
     }
 }
