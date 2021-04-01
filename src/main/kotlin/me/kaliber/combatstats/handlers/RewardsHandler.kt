@@ -7,7 +7,7 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.configuration.file.FileConfiguration
 
-class Rewards(private val config: FileConfiguration)
+class RewardsHandler(private val config: FileConfiguration)
 {
 
     private val console = Bukkit.getConsoleSender()

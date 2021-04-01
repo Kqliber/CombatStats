@@ -18,18 +18,17 @@ import java.io.File
 class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
 {
 
-    private val file = File(plugin.dataFolder, "config.yml")
     @SubCommand("reload")
     @Permission("combatstats.admin")
     fun reload(sender: CommandSender)
     {
+        val file = File(plugin.dataFolder, "config.yml")
         val message = "&bConfig reloaded."
         if (file.exists())
         {
             plugin.reloadConfig()
             plugin.saveConfig()
-            sender.message(message)
-            return
+            return sender.message(message)
         }
 
         file.parentFile.mkdirs()
