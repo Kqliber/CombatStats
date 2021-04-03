@@ -1,6 +1,6 @@
 package me.kaliber.combatstats.listeners
 
-import me.kaliber.combatstats.handlers.Rewards
+import me.kaliber.combatstats.handlers.RewardsHandler
 import me.kaliber.combatstats.CombatStatsPlugin
 
 import org.bukkit.event.Listener
@@ -24,7 +24,7 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
         user.lastKill = player.name()
 
         // running commands and messages in config
-        with(Rewards(plugin.config))
+        with(RewardsHandler())
         {
         runKillerCommands(killer, entity)
         runPlayerCommands(entity, killer)

@@ -1,17 +1,17 @@
 package me.kaliber.combatstats.handlers
 
+import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.executeCmd
 import me.kaliber.combatstats.extensions.message
 
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import org.bukkit.configuration.file.FileConfiguration
 
-class RewardsHandler(private val config: FileConfiguration)
+class RewardsHandler
 {
 
     private val console = Bukkit.getConsoleSender()
-    private val rewards = config.getBoolean("rewards.enabled")
+    private val rewards = Config.REWARDS_ENABLED.boolean
 
     fun runKillerCommands(killer: Player, player: Player)
     {
@@ -20,11 +20,8 @@ class RewardsHandler(private val config: FileConfiguration)
             return
         }
 
-        with(config)
-        {
-            getStringList("rewards.killer.commands").setPlaceholders(killer, player).executeCmd(console, killer)
-            getStringList("rewards.killer.messages").setPlaceholders(killer, player).message(killer)
-        }
+        Config.KILLER_COMMANDS.list.setPlaceholders(killer, player).executeCmd(console, killer)
+        Config.KILLER_MESSAGES.list.setPlaceholders(killer, player).message(killer)
     }
 
     fun runPlayerCommands(player: Player, killer: Player)
@@ -34,11 +31,8 @@ class RewardsHandler(private val config: FileConfiguration)
             return
         }
 
-        with(config)
-        {
-            getStringList("rewards.player.commands").setPlaceholders(killer, player).executeCmd(console, player)
-            getStringList("rewards.player.messages").setPlaceholders(killer, player).message(player)
-        }
+        Config.PLAYER_COMMANDS.list.setPlaceholders(killer, player).executeCmd(console, player)
+        Config.PLAYER_MESSAGES.list.setPlaceholders(killer, player).message(player)
     }
 
     private fun List<String>.setPlaceholders(killer: Player, player: Player): List<String>
