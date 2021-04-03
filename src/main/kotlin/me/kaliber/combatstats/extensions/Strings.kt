@@ -22,7 +22,12 @@ fun setMessage(player: OfflinePlayer, message: String): String {
 
 fun List<String>.message(sender: CommandSender)
 {
-    forEach { sender.sendMessage(it.color()) }
+    forEach { it.message(sender) }
+}
+
+fun String.message(sender: CommandSender)
+{
+    sender.sendMessage(this.color())
 }
 
 fun List<String>.executeCmd(sender: CommandSender, player: Player)
