@@ -1,7 +1,8 @@
 package me.kaliber.combatstats
 
+import me.kaliber.combatstats.config.Config
+import me.kaliber.combatstats.config.ConfigManager
 import me.kaliber.combatstats.handlers.UsersHandler
-import me.kaliber.combatstats.tasks.SaveDataTask
 import me.kaliber.combatstats.commands.MainCommand
 import me.kaliber.combatstats.commands.HelpCommand
 import me.kaliber.combatstats.commands.StatsCommand
@@ -12,6 +13,7 @@ import me.kaliber.combatstats.listeners.PlayerQuitListener
 import me.kaliber.combatstats.listeners.PlayerDeathListener
 import me.kaliber.combatstats.placeholders.CombatPlaceholders
 import me.kaliber.combatstats.tasks.UpdateLeaderboardTask
+import me.kaliber.combatstats.tasks.SaveDataTask
 
 import me.mattstudios.mf.base.CommandManager
 import org.bukkit.plugin.java.JavaPlugin
@@ -22,6 +24,7 @@ class CombatStatsPlugin : JavaPlugin()
     private val saveData = SaveDataTask(this)
     private val updateLeaderboardTask = UpdateLeaderboardTask(this)
 
+    val conf = ConfigManager(this)
     val usersHandler = UsersHandler(this)
     val leaderboardHandler = LeaderboardHandler(this)
 
@@ -32,7 +35,7 @@ class CombatStatsPlugin : JavaPlugin()
         loadConfig()
         usersHandler.loadUsers()
 
-        val interval = config.getLong("save-data-interval") / 20
+        val interval = Config.SAVE_DATA_INTERVAL.int
         saveData.runTaskTimer(this, 0L, interval)
         updateLeaderboardTask.runTaskTimer(this, 0L, interval)
     }
@@ -75,6 +78,6 @@ class CombatStatsPlugin : JavaPlugin()
             config.options().copyDefaults(true)
         }
         saveConfig()
-        reloadConfig()
+        conf.reload()
     }
 }

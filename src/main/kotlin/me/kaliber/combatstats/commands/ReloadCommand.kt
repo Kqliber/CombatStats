@@ -24,10 +24,10 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     {
         val file = File(plugin.dataFolder, "config.yml")
         val message = "&bConfig reloaded."
+
         if (file.exists())
         {
-            plugin.reloadConfig()
-            plugin.saveConfig()
+            plugin.conf.reload()
             return sender.message(message)
         }
 
