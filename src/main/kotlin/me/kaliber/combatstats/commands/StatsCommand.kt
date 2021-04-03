@@ -24,8 +24,7 @@ class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     {
         if (sender !is Player)
         {
-            sender.sendMessage("Player command only.")
-            return
+            return sender.sendMessage("Player command only.")
         }
 
         val message = Config.STATS_COMMAND.list
