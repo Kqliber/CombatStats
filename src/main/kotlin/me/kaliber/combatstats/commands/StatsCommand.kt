@@ -1,6 +1,7 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.extensions.message
 
@@ -27,7 +28,7 @@ class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
             return
         }
 
-        val message = plugin.config.getStringList("stats-command")
+        val message = Config.STATS_COMMAND.list
         if (arg == null)
         {
             return message.message(sender)
