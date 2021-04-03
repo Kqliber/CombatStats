@@ -1,30 +1,68 @@
 
 # CombatStats v@version@ by Kaliber
+
+# » Placeholders
 # This plugin supports PlaceholderAPI placeholders which can be found here:
 # https://github.com/PlaceholderAPI/PlaceholderAPI/wiki/Placeholders
 
-# Internal Placeholders
-# %kills%
-# %killstreak%
-# %killer%
+# » CombatStats PlaceholderAPI Placeholders
+# - %combatstats_kills% - returns the player's kills.
+# - %combatstats_deaths% - returns the player's deaths.
+# - %combatstats_kd% - returns the player's KD ratio.
+# - %combatstats_killstreak% - returns the player's current killstreak.
+# - %combatstats_last_kill% - returns the last player they killed.
+# - %combatstats_kd_rounded_[decimal-places]% - returns the player's KD rounded. If there is no decimal place specified, the placeholder will default to 2 decimal places
+# - %combatstats_placement_<type>_<player-name>% - returns the player's position in the leaderboard type
+# - %combatstats_top_<type>_<info>_<position>% - returns the name/value who is at the position specified in the leaderboard type
 
-# stats command - including a player argument.
+# <TYPE> - specifies which leaderboard to use: kills/killstreak
+# <INFO> - specifies which information to display: player-name/value (value being either the kills or killstreak amount)
+# <POSITION> - the position of the leaderboard to get
+
+# *Placeholders with <> - required fields
+# *Placeholders with [] - optional fields
+
+# » Internal Placeholders
+# - %killer% - get the killer's name
+# - %dead% - get the player's name who died
+
+# » Configuration Settings
+
+# stats-command:
+# Displays a message when "/combatstats stats [player]" is run.
+# If a player argument is present in the command, the command will return the statistics for that player
+
+# save-data-interval:
+# Set the delay between when each task will be executed, in seconds
+# Tasks include: Saving player data to file and updating leaderboards
+
+# rewards:
+#   enabled: (Specify whether rewards should be enabled or not)
+#   killer:
+#     commands:
+#       - (execute commands for the killer)
+#     messages:
+#       - (send messages to the killer)
+#   player:
+#     commands:
+#       - (execute commands for the dead player)
+#     messages:
+#      - (send messages to the dead player)
+#
 stats-command:
   - '&9%player_name%''s Stats &8- &bKillstreak&7: &f%combatstats_killstreak%'
 
-# save the plugin's data - value in seconds.
 save-data-interval: 300
 
-# enable or disable rewards with commands to be executed for each player when a kill happens.
 rewards:
   enabled: true
   killer:
     commands:
       - 'give %player_name% diamond 10'
     messages:
-      - '&fYou killed &b%player%&f!'
+      - '&fYou killed &b%dead%&f!'
   player:
     commands:
     - 'eco take %player_name% 10'
     messages:
-    - '&fYou died to &c%killer%'
+    - '&fYou were killed by &c%killer%'
