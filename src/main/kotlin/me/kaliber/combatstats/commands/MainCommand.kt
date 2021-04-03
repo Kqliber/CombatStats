@@ -1,6 +1,6 @@
 package me.kaliber.combatstats.commands
 
-import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.message
 
 import org.bukkit.command.CommandSender
@@ -13,14 +13,13 @@ import me.mattstudios.mf.annotations.Permission
 
 @Command("combatstats")
 @Alias("cstats")
-class MainCommand(private val plugin: CombatStatsPlugin) : CommandBase()
+class MainCommand : CommandBase()
 {
 
     @Default
     @Permission("combatstats.info")
     fun mainCommand(sender: CommandSender)
     {
-        listOf("&bCombatStats &7version &f${plugin.description.version}",
-               "&7Created by: &bKaliber").message(sender)
+        Config.MAIN_COMMAND.list.message(sender)
     }
 }

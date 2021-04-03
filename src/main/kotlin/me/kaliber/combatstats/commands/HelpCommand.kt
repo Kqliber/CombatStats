@@ -1,6 +1,6 @@
 package me.kaliber.combatstats.commands
 
-import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.message
 
 import org.bukkit.command.CommandSender
@@ -13,17 +13,13 @@ import me.mattstudios.mf.base.CommandBase
 
 @Command("combatstats")
 @Alias("cstats")
-class HelpCommand(private val plugin: CombatStatsPlugin) : CommandBase()
+class HelpCommand : CommandBase()
 {
 
     @SubCommand("help")
     @Permission("combatstats.help")
     fun helpCommand(sender: CommandSender)
     {
-        listOf("&9CombatStats Help &8(&7v${plugin.description.version}&8)",
-            "&b/cs &8- &7Display plugin information",
-            "&b/cs help &8- &7Display plugin commands",
-            "&b/cs reload &8- &7Reload configuration file",
-            "&b/cs stats <player> &8- &7Display player statistics").message(sender)
+        Config.HELP_COMMAND.list.message(sender)
     }
 }

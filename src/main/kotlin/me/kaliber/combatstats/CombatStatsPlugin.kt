@@ -50,8 +50,8 @@ class CombatStatsPlugin : JavaPlugin()
     {
         // commands
         CommandManager(this).register(
-            MainCommand(this),
-            HelpCommand(this),
+            MainCommand(),
+            HelpCommand(),
             StatsCommand(),
             ReloadCommand(this)
         )

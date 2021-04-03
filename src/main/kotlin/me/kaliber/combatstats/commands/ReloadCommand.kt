@@ -1,6 +1,7 @@
 package me.kaliber.combatstats.commands
 
 import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.message
 
 import me.mattstudios.mf.base.CommandBase
@@ -23,7 +24,7 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
     fun reload(sender: CommandSender)
     {
         val file = File(plugin.dataFolder, "config.yml")
-        val message = "&bConfig reloaded."
+        val message = Config.RELOAD_COMMAND.string
 
         if (file.exists())
         {

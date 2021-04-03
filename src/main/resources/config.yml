@@ -27,10 +27,17 @@
 # - %dead% - get the player's name who died
 
 # » Configuration Settings
-
-# stats-command:
-# Displays a message when "/combatstats stats [player]" is run.
-# If a player argument is present in the command, the command will return the statistics for that player
+# messages:
+#   player-command-only: (message to be displayed when the command is only for players)
+#   player-not-found: (message to be displayed when the player can not be found)
+#   reload-command: (reload command message)
+#   main-command:
+#     - (main command message)
+#   help-command:
+#     - (help command message)
+#   stats-command:
+#     - (Displays a message when "/combatstats stats [player]" is run.)
+#     - If a player argument is present in the command, the command will return the statistics for that player
 
 # save-data-interval:
 # Set the delay between when each task will be executed, in seconds
@@ -49,8 +56,28 @@
 #     messages:
 #      - (send messages to the dead player)
 #
-stats-command:
-  - '&9%player_name%''s Stats &8- &bKillstreak&7: &f%combatstats_killstreak%'
+messages:
+  player-command-only: '&7Only players can execute this command.'
+  player-not-found: '&7Player not found.'
+  reload-command: '&bConfig reloaded.'
+  main-command:
+    - ''
+    - '&bCombatStats &7version &f@version@'
+    - '&7Created by: &bKaliber'
+    - ''
+  help-command:
+    - ''
+    - '&9CombatStats Help &8(&7v@version@&8)'
+    - '&b/cs &8- &7Display plugin information'
+    - '&b/cs help &8- &7Display plugin commands'
+    - '&b/cs reload &8- &7Reload configuration file'
+    - '&b/cs stats [player] &8- &7Display player statistics'
+    - ''
+  stats-command:
+    - ''
+    - '&9%player_name%''s Stats &8- '
+    - '&bKillstreak&7: &f%combatstats_killstreak%'
+    - ''
 
 save-data-interval: 300
 

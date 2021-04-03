@@ -1,6 +1,5 @@
 package me.kaliber.combatstats.commands
 
-import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.extensions.message
@@ -24,7 +23,7 @@ class StatsCommand : CommandBase()
     {
         if (sender !is Player)
         {
-            return sender.sendMessage("Player command only.")
+            return Config.PLAYER_COMMAND_ONLY.string.message(sender)
         }
 
         val message = Config.STATS_COMMAND.list
@@ -33,7 +32,7 @@ class StatsCommand : CommandBase()
             return sender.message(message)
         }
 
-        val playerArg = arg.getPlayer() ?: return sender.message("Player not found.")
+        val playerArg = arg.getPlayer() ?: return Config.PLAYER_NOT_FOUND.string.message(sender)
         return sender.message(message, playerArg)
     }
 }
