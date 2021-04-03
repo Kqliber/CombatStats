@@ -30,10 +30,10 @@ class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         val message = Config.STATS_COMMAND.list
         if (arg == null)
         {
-            return message.message(sender)
+            return sender.message(message)
         }
 
         val playerArg = arg.getPlayer() ?: return sender.message("Player not found.")
-        return sender.message(playerArg, message)
+        return sender.message(message, playerArg)
     }
 }

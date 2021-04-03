@@ -21,7 +21,8 @@ class RewardsHandler
         }
 
         Config.KILLER_COMMANDS.list.setPlaceholders(killer, player).executeCmd(console, killer)
-        Config.KILLER_MESSAGES.list.setPlaceholders(killer, player).message(killer)
+        val message = Config.KILLER_MESSAGES.list.setPlaceholders(killer, player)
+        killer.message(message)
     }
 
     fun runPlayerCommands(player: Player, killer: Player)
@@ -32,7 +33,8 @@ class RewardsHandler
         }
 
         Config.PLAYER_COMMANDS.list.setPlaceholders(killer, player).executeCmd(console, player)
-        Config.PLAYER_MESSAGES.list.setPlaceholders(killer, player).message(player)
+        val message = Config.PLAYER_MESSAGES.list.setPlaceholders(killer, player)
+        player.message(message)
     }
 
     private fun List<String>.setPlaceholders(killer: Player, player: Player): List<String>

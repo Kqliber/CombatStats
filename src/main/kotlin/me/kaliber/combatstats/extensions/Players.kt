@@ -3,9 +3,9 @@ package me.kaliber.combatstats.extensions
 import org.bukkit.OfflinePlayer
 import org.bukkit.command.CommandSender
 
-fun CommandSender.message(player: OfflinePlayer, message: List<String>)
+fun CommandSender.message(message: List<String>, player: OfflinePlayer = this as OfflinePlayer)
 {
-    message.forEach { sendMessage(setMessage(player, it)) }
+    message.forEach { message(setMessage(player, it)) }
 }
 
 fun CommandSender.message(message: String)
