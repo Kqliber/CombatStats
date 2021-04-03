@@ -15,7 +15,7 @@ import me.mattstudios.mf.annotations.Permission
 import me.mattstudios.mf.annotations.SubCommand
 
 @Command("combatstats")
-class StatsCommand(private val plugin: CombatStatsPlugin) : CommandBase()
+class StatsCommand : CommandBase()
 {
 
     @SubCommand("stats")

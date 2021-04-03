@@ -52,7 +52,7 @@ class CombatStatsPlugin : JavaPlugin()
         CommandManager(this).register(
             MainCommand(this),
             HelpCommand(this),
-            StatsCommand(this),
+            StatsCommand(),
             ReloadCommand(this)
         )
 
