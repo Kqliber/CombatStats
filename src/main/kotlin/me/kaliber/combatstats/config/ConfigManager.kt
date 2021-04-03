@@ -14,9 +14,9 @@ class ConfigManager(private val plugin: CombatStatsPlugin)
 
         Config.values().forEach()
         {
-            if (config.get(it.path) == null)
+            if (config[it.path] == null)
             {
-                config.set(it.path, it.default)
+                config[it.path] = it.default
             }
             it.load(config)
         }
