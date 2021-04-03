@@ -42,6 +42,7 @@
 # save-data-interval:
 # Set the delay between when each task will be executed, in seconds
 # Tasks include: Saving player data to file and updating leaderboards
+# This setting will only change upon restart
 
 # rewards:
 #   enabled: (Specify whether rewards should be enabled or not)
@@ -55,7 +56,7 @@
 #       - (execute commands for the dead player)
 #     messages:
 #      - (send messages to the dead player)
-#
+
 messages:
   player-command-only: '&7Only players can execute this command.'
   player-not-found: '&7Player not found.'
@@ -68,10 +69,10 @@ messages:
   help-command:
     - ''
     - '&9CombatStats Help &8(&7v@version@&8)'
-    - '&b/cs &8- &7Display plugin information'
-    - '&b/cs help &8- &7Display plugin commands'
-    - '&b/cs reload &8- &7Reload configuration file'
-    - '&b/cs stats [player] &8- &7Display player statistics'
+    - '&b/combatstats &8- &7Display plugin information'
+    - '&b/combatstats help &8- &7Display plugin commands'
+    - '&b/combatstats reload &8- &7Reload configuration file'
+    - '&b/combatstats stats [player] &8- &7Display player statistics'
     - ''
   stats-command:
     - ''

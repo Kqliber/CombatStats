@@ -41,6 +41,7 @@ enum class Config(val path: String, val default: Any)
 }
 
 private val plugin = JavaPlugin.getPlugin(CombatStatsPlugin::class.java)
+
 private val mainCommand = listOf(
     "",
     "&bCombatStats &7version &f${plugin.description.version}",
@@ -50,10 +51,10 @@ private val mainCommand = listOf(
 private val helpCommand = listOf(
     "",
     "&9CombatStats Help &8(&7v${plugin.description.version}&8)",
-    "&b/cs &8- &7Display plugin information",
-    "&b/cs help &8- &7Display plugin commands",
-    "&b/cs reload &8- &7Reload configuration file",
-    "&b/cs stats [player] &8- &7Display player statistics",
+    "&b/combatstats &8- &7Display plugin information",
+    "&b/combatstats help &8- &7Display plugin commands",
+    "&b/combatstats reload &8- &7Reload configuration file",
+    "&b/combatstats stats [player] &8- &7Display player statistics",
     "")
 
 private val statsCommand = listOf(
@@ -61,6 +62,7 @@ private val statsCommand = listOf(
     "&9%player_name%'s Stats &8- ",
     "&bKillstreak&7: &f%combatstats_killstreak%",
     "")
+
 private val killerCommands = listOf("give %player_name% diamond 10")
 private val killerMessages = listOf("&fYou killed &b%dead%&f!")
 private val playerCommands = listOf("eco take %player_name%")
