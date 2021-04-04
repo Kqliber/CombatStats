@@ -37,8 +37,8 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
     override fun onRequest(offlinePlayer: OfflinePlayer, input: String): String?
     {
         val user = plugin.usersHandler[offlinePlayer]
-        val kills = user.kills()
-        val deaths = user.deaths()
+        val kills = user.kills
+        val deaths = user.deaths
         val kd = if (deaths == 0) kills.toDouble() else kills.toDouble() / deaths.toDouble()
 
         if (input.startsWith("kd_rounded"))
@@ -81,7 +81,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             {
                 if (leaderboard.type == LeaderboardType.KILLS)
                 {
-                    return user.kills().toString()
+                    return user.kills.toString()
                 }
                 user.killstreak.toString()
             }

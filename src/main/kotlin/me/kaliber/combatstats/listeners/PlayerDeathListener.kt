@@ -16,14 +16,13 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
         val killer = entity.killer ?: return player.reset()
 
         val user = plugin.usersHandler[killer]
-        // entering kill streak statistics
         user.killstreak++
-        player.reset()
-
-        // set player's last known kill username
+        user.kills++
         user.lastKill = player.name()
 
-        // running commands and messages in config
+        player.reset()
+        player.deaths++
+
         with(RewardsHandler())
         {
         runKillerCommands(killer, entity)

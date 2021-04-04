@@ -18,7 +18,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
     {
         return users.getOrPut(uuid)
         {
-            User(uuid, 0, "")
+            User(uuid, 0, "", 0, 0)
         }
     }
 
@@ -34,7 +34,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
 
     fun getKills(): List<User>
     {
-        return users.values.distinct().sortedByDescending { it.kills() }
+        return users.values.distinct().sortedByDescending { it.kills }
     }
 
     fun getKillstreaks(): List<User>
@@ -66,7 +66,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
 
         if (!file.exists())
         {
-            users[uuid] = User(uuid, 0, "")
+            users[uuid] = User(uuid, 0, "", 0, 0)
             return
         }
 
