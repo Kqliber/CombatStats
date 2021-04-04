@@ -6,10 +6,10 @@ import java.util.UUID
 
 data class User(
     val uuid: UUID,
-    var killstreak: Int,
-    var lastKill: String,
-    var kills: Int,
-    var deaths: Int
+    var killstreak: Int = 0,
+    var lastKill: String = "",
+    var kills: Int = 0,
+    var deaths: Int = 0
     )
 {
 

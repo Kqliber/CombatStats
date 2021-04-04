@@ -18,7 +18,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
     {
         return users.getOrPut(uuid)
         {
-            User(uuid, 0, "", 0, 0)
+            User(uuid)
         }
     }
 
@@ -66,7 +66,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
 
         if (!file.exists())
         {
-            users[uuid] = User(uuid, 0, "", 0, 0)
+            users[uuid] = User(uuid)
             return
         }
 
