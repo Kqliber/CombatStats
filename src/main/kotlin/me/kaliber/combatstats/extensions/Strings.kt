@@ -27,7 +27,7 @@ fun List<String>.message(sender: CommandSender)
 
 fun String.message(sender: CommandSender)
 {
-    sender.sendMessage(this.color())
+    sender.sendMessage(color())
 }
 
 fun List<String>.executeCmd(sender: CommandSender, player: Player)
