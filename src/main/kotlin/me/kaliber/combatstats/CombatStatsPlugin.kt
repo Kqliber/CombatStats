@@ -35,7 +35,7 @@ class CombatStatsPlugin : JavaPlugin()
         loadConfig()
         usersHandler.loadUsers()
 
-        val interval = Config.SAVE_DATA_INTERVAL.int
+        val interval = Config.SAVE_DATA_INTERVAL.int * 20
         saveData.runTaskTimer(this, 0L, interval)
         updateLeaderboardTask.runTaskTimer(this, 0L, interval)
     }
