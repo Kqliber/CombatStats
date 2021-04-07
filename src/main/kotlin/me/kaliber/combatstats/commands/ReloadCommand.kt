@@ -3,15 +3,12 @@ package me.kaliber.combatstats.commands
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.message
-
-import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Alias
 import me.mattstudios.mf.annotations.Command
 import me.mattstudios.mf.annotations.Permission
 import me.mattstudios.mf.annotations.SubCommand
-
+import me.mattstudios.mf.base.CommandBase
 import org.bukkit.command.CommandSender
-
 import java.io.File
 
 @Command("combatstats")
@@ -29,7 +26,7 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         if (file.exists())
         {
             plugin.conf.reload()
-            return sender.message(message)
+            return message.message(sender)
         }
 
         file.parentFile.mkdirs()
@@ -37,6 +34,6 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         plugin.saveDefaultConfig()
         plugin.saveConfig()
 
-        sender.message(message)
+        message.message(sender)
     }
 }

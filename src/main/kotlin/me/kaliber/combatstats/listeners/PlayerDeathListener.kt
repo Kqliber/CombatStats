@@ -1,10 +1,9 @@
 package me.kaliber.combatstats.listeners
 
-import me.kaliber.combatstats.handlers.RewardsHandler
 import me.kaliber.combatstats.CombatStatsPlugin
-
-import org.bukkit.event.Listener
+import me.kaliber.combatstats.handlers.RewardsHandler
 import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 
 class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {

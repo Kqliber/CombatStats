@@ -3,15 +3,13 @@ package me.kaliber.combatstats.commands
 import me.kaliber.combatstats.config.Config
 import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.extensions.message
-
-import org.bukkit.command.CommandSender
-import org.bukkit.entity.Player
-
-import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Command
 import me.mattstudios.mf.annotations.Optional
 import me.mattstudios.mf.annotations.Permission
 import me.mattstudios.mf.annotations.SubCommand
+import me.mattstudios.mf.base.CommandBase
+import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 
 @Command("combatstats")
 class StatsCommand : CommandBase()

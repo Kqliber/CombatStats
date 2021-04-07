@@ -5,10 +5,5 @@ import org.bukkit.command.CommandSender
 
 fun CommandSender.message(message: List<String>, player: OfflinePlayer = this as OfflinePlayer)
 {
-    message.forEach { message(setMessage(player, it)) }
-}
-
-fun CommandSender.message(message: String)
-{
-    sendMessage(message.color())
+    message.forEach { setMessage(player, it).message(this) }
 }
