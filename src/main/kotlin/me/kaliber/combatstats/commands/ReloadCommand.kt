@@ -29,7 +29,7 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         if (file.exists())
         {
             plugin.conf.reload()
-            return sender.message(message)
+            return message.message(sender)
         }
 
         file.parentFile.mkdirs()
@@ -37,6 +37,6 @@ class ReloadCommand(private val plugin: CombatStatsPlugin) : CommandBase()
         plugin.saveDefaultConfig()
         plugin.saveConfig()
 
-        sender.message(message)
+        message.message(sender)
     }
 }

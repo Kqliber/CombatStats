@@ -1,16 +1,16 @@
 package me.kaliber.combatstats.extensions
 
-import org.bukkit.entity.Player
+import me.clip.placeholderapi.PlaceholderAPI
+import net.kyori.adventure.platform.bukkit.BukkitAudiences
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+import net.md_5.bungee.api.ChatColor
+import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.command.CommandSender
-import org.bukkit.Bukkit
-import net.md_5.bungee.api.ChatColor
+import org.bukkit.entity.Player
 
-import me.clip.placeholderapi.PlaceholderAPI
+lateinit var adventure: BukkitAudiences
 
-/**
- * Removed hex colors until migration to adventure api
- */
 fun String.color(): String
 {
     return ChatColor.translateAlternateColorCodes('&', this)
@@ -27,7 +27,7 @@ fun List<String>.message(sender: CommandSender)
 
 fun String.message(sender: CommandSender)
 {
-    sender.sendMessage(color())
+    adventure.sender(sender).sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(this))
 }
 
 fun List<String>.executeCmd(sender: CommandSender, player: Player)
