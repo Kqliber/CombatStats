@@ -1,10 +1,9 @@
 package me.kaliber.combatstats.placeholders
 
-import org.bukkit.OfflinePlayer
-
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
-import me.kaliber.combatstats.leaderboard.LeaderboardType
 import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.leaderboard.LeaderboardType
+import org.bukkit.OfflinePlayer
 
 class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExpansion()
 {

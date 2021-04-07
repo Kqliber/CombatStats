@@ -1,8 +1,8 @@
 package me.kaliber.combatstats.user
 
-import org.bukkit.OfflinePlayer
 import org.bukkit.Bukkit
-import java.util.UUID
+import org.bukkit.OfflinePlayer
+import java.util.*
 
 data class User(
     val uuid: UUID,
