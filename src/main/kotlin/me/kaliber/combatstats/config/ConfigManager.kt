@@ -1,6 +1,7 @@
 package me.kaliber.combatstats.config
 
 import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.extensions.message
 import java.io.File
 
 class ConfigManager(private val plugin: CombatStatsPlugin)
@@ -21,6 +22,15 @@ class ConfigManager(private val plugin: CombatStatsPlugin)
             it.load(config)
         }
         config.save(File(plugin.dataFolder, "config.yml"))
+        registerCmdUsages()
     }
 
+    private fun registerCmdUsages()
+    {
+        with(plugin.commandManager.messageHandler)
+        {
+            register("cmd.no.permission") { Config.NO_PERMISSION.string.message(it) }
+            register("cmd.no.exists") { Config.WRONG_USAGE.string.message(it) }
+        }
+    }
 }
