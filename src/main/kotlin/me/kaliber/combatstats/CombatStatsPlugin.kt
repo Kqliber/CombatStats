@@ -19,7 +19,6 @@ import me.mattstudios.mf.base.CommandManager
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import org.bukkit.plugin.java.JavaPlugin
 
-
 class CombatStatsPlugin : JavaPlugin()
 {
 
