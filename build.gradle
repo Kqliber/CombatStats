@@ -48,5 +48,7 @@ shadowJar {
     relocate 'kotlin', 'me.kaliber.libs.kotlin'
     relocate 'me.mattstudios.mf', 'me.kaliber.libs.cmd'
     relocate 'org.jetbrains', 'me.kaliber.libs.jetbrains'
+    relocate 'org.intellij', 'me.kaliber.libs.jetbrains'
+    relocate 'net.kyori', 'me.kaliber.libs.adventure'
     archiveFileName = "CombatStats-${project.version}.jar"
 }
