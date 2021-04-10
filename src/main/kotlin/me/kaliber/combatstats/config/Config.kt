@@ -9,6 +9,8 @@ enum class Config(val path: String, val default: Any)
 
     PLAYER_NOT_FOUND("messages.player-not-found", "&7Player not found."),
     PLAYER_COMMAND_ONLY("messages.player-command-only", "&7Only players can execute this command."),
+    NO_PERMISSION("messages.no-permission", "&cNo permission."),
+    WRONG_USAGE("messages.command-wrong-usage", "&cWrong Usage! &7/cstats help"),
     MAIN_COMMAND("messages.main-command", mainCommand),
     HELP_COMMAND("messages.help-command", helpCommand),
     STATS_COMMAND("messages.stats-command", statsCommand),
