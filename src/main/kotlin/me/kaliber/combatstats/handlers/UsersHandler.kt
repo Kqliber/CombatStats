@@ -42,6 +42,11 @@ class UsersHandler(plugin: CombatStatsPlugin)
         return users.values.distinct().sortedByDescending { it.killstreak }
     }
 
+    fun getKDs(): List<User>
+    {
+        return users.values.distinct().sortedByDescending { it.kd }
+    }
+
     /**
      * Loads user data from file and puts into map
      */

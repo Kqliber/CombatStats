@@ -6,7 +6,8 @@ package me.kaliber.combatstats.leaderboard
 
 enum class LeaderboardType {
     KILLS,
-    KILLSTREAK;
+    KILLSTREAK,
+    KD;
 
     companion object
     {

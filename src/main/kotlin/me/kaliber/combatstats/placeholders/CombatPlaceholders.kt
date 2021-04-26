@@ -78,11 +78,12 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             "name" -> user.name()
             "value" ->
             {
-                if (leaderboard.type == LeaderboardType.KILLS)
+                return when (leaderboard.type)
                 {
-                    return user.kills.toString()
+                    LeaderboardType.KILLS -> user.kills.toString()
+                    LeaderboardType.KILLSTREAK -> user.killstreak.toString()
+                    LeaderboardType.KD -> user.kd.toString()
                 }
-                user.killstreak.toString()
             }
             else -> null
         }
