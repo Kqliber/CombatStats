@@ -19,7 +19,6 @@ import me.mattstudios.mf.base.CommandManager
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import org.bukkit.plugin.java.JavaPlugin
 
-
 class CombatStatsPlugin : JavaPlugin()
 {
 
@@ -27,11 +26,14 @@ class CombatStatsPlugin : JavaPlugin()
     private val updateLeaderboardTask = UpdateLeaderboardTask(this)
 
     val conf = ConfigManager(this)
+    lateinit var commandManager: CommandManager
+
     val usersHandler = UsersHandler(this)
     val leaderboardHandler = LeaderboardHandler(this)
 
     override fun onEnable()
     {
+        commandManager = CommandManager(this)
         adventure = BukkitAudiences.create(this)
 
         register()
@@ -54,7 +56,7 @@ class CombatStatsPlugin : JavaPlugin()
     private fun register()
     {
         // commands
-        CommandManager(this).register(
+        commandManager.register(
             MainCommand(),
             HelpCommand(),
             StatsCommand(),

@@ -60,6 +60,8 @@
 messages:
   player-command-only: '&7Only players can execute this command.'
   player-not-found: '&7Player not found.'
+  no-permission: '&cNo permission!'
+  command-wrong-usage: '&cWrong Usage! &a/cstats help'
   reload-command: '&bConfig reloaded.'
   main-command:
     - ''

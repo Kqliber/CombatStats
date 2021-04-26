@@ -5,7 +5,7 @@ import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.user.User
 import org.bukkit.OfflinePlayer
-import java.util.*
+import java.util.UUID
 
 class UsersHandler(plugin: CombatStatsPlugin)
 {
