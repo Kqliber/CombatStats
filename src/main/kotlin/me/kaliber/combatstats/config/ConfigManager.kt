@@ -1,8 +1,8 @@
 package me.kaliber.combatstats.config
 
+import java.io.File
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.extensions.message
-import java.io.File
 
 class ConfigManager(private val plugin: CombatStatsPlugin)
 {
