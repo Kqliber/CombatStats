@@ -16,7 +16,8 @@ fun String.color(): TextComponent
     return LegacyComponentSerializer.legacyAmpersand().deserialize(this)
 }
 
-fun setMessage(player: OfflinePlayer, message: String): String {
+fun setMessage(player: OfflinePlayer, message: String): String
+{
     return PlaceholderAPI.setPlaceholders(player, message)
 }
 
