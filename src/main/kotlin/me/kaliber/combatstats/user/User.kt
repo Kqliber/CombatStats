@@ -7,6 +7,7 @@ import org.bukkit.OfflinePlayer
 data class User(
     val uuid: UUID,
     var killstreak: Int = 0,
+    var highestKillstreak: Int = 0,
     var lastKill: String = "",
     var kills: Int = 0,
     var deaths: Int = 0

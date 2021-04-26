@@ -42,6 +42,11 @@ class UsersHandler(plugin: CombatStatsPlugin)
         return users.values.distinct().sortedByDescending { it.killstreak }
     }
 
+    fun getHighestKillstreaks(): List<User>
+    {
+        return users.values.distinct().sortedByDescending { it.highestKillstreak }
+    }
+
     fun getKDRs(): List<User>
     {
         return users.values.distinct().sortedByDescending { it.kdr }

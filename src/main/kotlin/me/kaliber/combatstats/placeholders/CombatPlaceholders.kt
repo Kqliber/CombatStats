@@ -61,6 +61,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             "deaths" -> deaths.toString()
             "kdr" -> kdr.toString()
             "killstreak" -> user.killstreak.toString()
+            "highestkillstreak" -> user.highestKillstreak.toString()
             "last_kill" -> user.lastKill
             else -> null
         }
@@ -82,6 +83,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
                 {
                     LeaderboardType.KILLS -> user.kills.toString()
                     LeaderboardType.KILLSTREAK -> user.killstreak.toString()
+                    LeaderboardType.HIGHESTKILLSTREAK -> user.highestKillstreak.toString()
                     LeaderboardType.KDR -> user.kdr.toString()
                 }
             }
