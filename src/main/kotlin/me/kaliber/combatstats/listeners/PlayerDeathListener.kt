@@ -12,10 +12,15 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
     fun PlayerDeathEvent.onDeath()
     {
         val player = plugin.usersHandler[entity]
-        val killer = entity.killer ?: return player.reset()
+        val killer = entity.killer ?: return run()
+        {
+            player.reset()
+            player.deaths++
+        }
 
         val user = plugin.usersHandler[killer]
         user.killstreak++
+        if (user.highestKillstreak < user.killstreak) user.highestKillstreak = user.killstreak
         user.kills++
         user.lastKill = player.name()
 
