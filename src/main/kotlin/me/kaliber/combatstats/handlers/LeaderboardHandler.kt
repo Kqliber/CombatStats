@@ -17,7 +17,7 @@ class LeaderboardHandler(private val plugin: CombatStatsPlugin)
             {
                 LeaderboardType.KILLS -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKills())
                 LeaderboardType.KILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKillstreaks())
-                LeaderboardType.KD -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKDs())
+                LeaderboardType.KDR -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKDRs())
             }
         }
     }
