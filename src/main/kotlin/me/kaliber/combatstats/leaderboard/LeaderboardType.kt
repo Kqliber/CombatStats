@@ -1,9 +1,5 @@
 package me.kaliber.combatstats.leaderboard
 
-/**
- * Allows further expansion in future
- */
-
 enum class LeaderboardType {
     KILLS,
     KILLSTREAK,
