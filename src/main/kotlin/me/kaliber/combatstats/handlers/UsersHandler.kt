@@ -1,11 +1,11 @@
 package me.kaliber.combatstats.handlers
 
 import com.google.gson.GsonBuilder
+import java.util.*
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.user.User
 import org.bukkit.OfflinePlayer
-import java.util.UUID
 
 class UsersHandler(plugin: CombatStatsPlugin)
 {
