@@ -1,8 +1,8 @@
 package me.kaliber.combatstats.placeholders
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
-import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.leaderboard.LeaderboardType
+import me.kaliber.combatstats.CombatStatsPlugin
 import org.bukkit.OfflinePlayer
 
 class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExpansion()
@@ -38,7 +38,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
         val user = plugin.usersHandler[offlinePlayer]
         val kills = user.kills
         val deaths = user.deaths
-        val kd = if (deaths == 0) kills.toDouble() else kills.toDouble() / deaths.toDouble()
+        val kd = user.kd
 
         if (input.startsWith("kd_rounded"))
         {
@@ -78,11 +78,12 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             "name" -> user.name()
             "value" ->
             {
-                if (leaderboard.type == LeaderboardType.KILLS)
+                return when (leaderboard.type)
                 {
-                    return user.kills.toString()
+                    LeaderboardType.KILLS -> user.kills.toString()
+                    LeaderboardType.KILLSTREAK -> user.killstreak.toString()
+                    LeaderboardType.KD -> user.kd.toString()
                 }
-                user.killstreak.toString()
             }
             else -> null
         }

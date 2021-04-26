@@ -13,6 +13,9 @@ data class User(
     )
 {
 
+    val kd: Double
+        get() = if (deaths == 0) kills.toDouble() else kills.toDouble() / deaths.toDouble()
+
     fun player(): OfflinePlayer
     {
         return Bukkit.getOfflinePlayer(uuid)
