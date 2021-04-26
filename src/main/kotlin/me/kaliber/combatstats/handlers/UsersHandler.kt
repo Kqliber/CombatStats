@@ -1,11 +1,12 @@
 package me.kaliber.combatstats.handlers
 
-import com.google.gson.GsonBuilder
-import java.util.UUID
-import me.kaliber.combatstats.CombatStatsPlugin
+import me.kaliber.combatstats.leaderboard.LeaderboardType
 import me.kaliber.combatstats.extensions.getPlayer
+import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.user.User
+import com.google.gson.GsonBuilder
 import org.bukkit.OfflinePlayer
+import java.util.UUID
 
 class UsersHandler(plugin: CombatStatsPlugin)
 {
@@ -32,24 +33,9 @@ class UsersHandler(plugin: CombatStatsPlugin)
         return name.getPlayer()?.let { get(it) }
     }
 
-    fun getKills(): List<User>
+    fun sortLeaderboard(type: LeaderboardType): List<User>
     {
-        return users.values.distinct().sortedByDescending { it.kills }
-    }
-
-    fun getKillstreaks(): List<User>
-    {
-        return users.values.distinct().sortedByDescending { it.killstreak }
-    }
-
-    fun getHighestKillstreaks(): List<User>
-    {
-        return users.values.distinct().sortedByDescending { it.highestKillstreak }
-    }
-
-    fun getKDRs(): List<User>
-    {
-        return users.values.distinct().sortedByDescending { it.kdr }
+        return LeaderboardSorter().sort(type, users.values)
     }
 
     /**

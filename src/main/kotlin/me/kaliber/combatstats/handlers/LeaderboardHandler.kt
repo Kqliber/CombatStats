@@ -1,8 +1,8 @@
 package me.kaliber.combatstats.handlers
 
-import me.kaliber.combatstats.CombatStatsPlugin
-import me.kaliber.combatstats.leaderboard.Leaderboard
 import me.kaliber.combatstats.leaderboard.LeaderboardType
+import me.kaliber.combatstats.leaderboard.Leaderboard
+import me.kaliber.combatstats.CombatStatsPlugin
 
 class LeaderboardHandler(private val plugin: CombatStatsPlugin)
 {
@@ -15,10 +15,10 @@ class LeaderboardHandler(private val plugin: CombatStatsPlugin)
         {
             when(it)
             {
-                LeaderboardType.KILLS -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKills())
-                LeaderboardType.KILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKillstreaks())
-                LeaderboardType.HIGHESTKILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getHighestKillstreaks())
-                LeaderboardType.KDR -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.getKDRs())
+                LeaderboardType.KILLS -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
+                LeaderboardType.KILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
+                LeaderboardType.HIGHESTKILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
+                LeaderboardType.KDR -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
             }
         }
     }
