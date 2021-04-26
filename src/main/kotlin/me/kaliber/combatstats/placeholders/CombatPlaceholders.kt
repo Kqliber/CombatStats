@@ -38,11 +38,11 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
         val user = plugin.usersHandler[offlinePlayer]
         val kills = user.kills
         val deaths = user.deaths
-        val kd = user.kd
+        val kdr = user.kdr
 
-        if (input.startsWith("kd_rounded"))
+        if (input.startsWith("kdr_rounded"))
         {
-            return round(kd, input.substringAfter("kd_rounded"))
+            return round(kdr, input.substringAfter("kdr_rounded"))
         }
 
         if (input.startsWith("top_"))
@@ -59,7 +59,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
         {
             "kills" -> kills.toString()
             "deaths" -> deaths.toString()
-            "kd" -> kd.toString()
+            "kdr" -> kdr.toString()
             "killstreak" -> user.killstreak.toString()
             "last_kill" -> user.lastKill
             else -> null
@@ -82,7 +82,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
                 {
                     LeaderboardType.KILLS -> user.kills.toString()
                     LeaderboardType.KILLSTREAK -> user.killstreak.toString()
-                    LeaderboardType.KD -> user.kd.toString()
+                    LeaderboardType.KDR -> user.kdr.toString()
                 }
             }
             else -> null

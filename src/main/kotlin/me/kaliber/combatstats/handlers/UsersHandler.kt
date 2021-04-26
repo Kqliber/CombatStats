@@ -42,9 +42,9 @@ class UsersHandler(plugin: CombatStatsPlugin)
         return users.values.distinct().sortedByDescending { it.killstreak }
     }
 
-    fun getKDs(): List<User>
+    fun getKDRs(): List<User>
     {
-        return users.values.distinct().sortedByDescending { it.kd }
+        return users.values.distinct().sortedByDescending { it.kdr }
     }
 
     /**
