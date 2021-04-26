@@ -30,12 +30,14 @@ Placeholder | Description
 %combatstats_top_<type>_<info>_<position>% | returns the name/value who is at the position specified in the leaderboard type
 
 
-```<TYPE> - specifies which leaderboard to use: kills/killstreak/kdr
+```
+<TYPE> - specifies which leaderboard to use: kills/killstreak/kdr
 <INFO> - specifies which information to display: player-name/value (value being either the kills or killstreak amount or kdr)
-<POSITION> - the position of the leaderboard to get```
+<POSITION> - the position of the leaderboard to get
 
-```Placeholders with <> - required fields
-Placeholders with [] - optional fields```
+Placeholders with <> - required fields
+Placeholders with [] - optional fields
+```
 
 ### Internal Placeholders:
 Placeholder | Description
