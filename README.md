@@ -26,8 +26,8 @@ Placeholder | Description
 %combatstats_highestkillstreak% | returns the player's highest killstreak.
 %combatstats_last_kill% | returns the last player they killed.
 %combatstats_kdr_rounded_[decimal-places]% | returns the player's KDR rounded. If there is no decimal place specified, the placeholder will default to 2 decimal places
-%combatstats_placement_<type>_<player>% | returns the player's position in the leaderboard type
-%combatstats_top_<type>_<info>_<position>% | returns the name/value who is at the position specified in the leaderboard type
+%combatstats_placement_\<type\>_\<player\>% | returns the player's position in the leaderboard type
+%combatstats_top_\<type\>_\<info\>_\<position\>% | returns the name/value who is at the position specified in the leaderboard type
 
 
 ```
