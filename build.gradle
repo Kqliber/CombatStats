@@ -2,7 +2,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 group 'me.kaliber'
@@ -41,15 +41,12 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         filter ReplaceTokens, tokens: [version: version]
     }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 shadowJar {
     minimize()
     relocate 'kotlin', 'me.kaliber.libs.kotlin'
     relocate 'me.mattstudios.mf', 'me.kaliber.libs.cmd'
-    relocate 'org.jetbrains', 'me.kaliber.libs.jetbrains'
-    relocate 'org.intellij', 'me.kaliber.libs.jetbrains'
     relocate 'net.kyori', 'me.kaliber.libs.adventure'
     archiveFileName = "CombatStats-${project.version}.jar"
 }
