@@ -20,7 +20,12 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
 
         val user = plugin.usersHandler[killer]
         user.killstreak++
-        if (user.highestKillstreak < user.killstreak) user.highestKillstreak = user.killstreak
+
+        if (user.killstreak > user.highestKillstreak)
+        {
+            user.highestKillstreak = user.killstreak
+        }
+
         user.kills++
         user.lastKill = player.name
 
