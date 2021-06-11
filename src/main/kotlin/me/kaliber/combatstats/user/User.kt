@@ -17,15 +17,11 @@ data class User(
     val kdr: Double
         get() = if (deaths == 0) kills.toDouble() else kills.toDouble() / deaths.toDouble()
 
-    fun player(): OfflinePlayer
-    {
-        return Bukkit.getOfflinePlayer(uuid)
-    }
+    val player: OfflinePlayer
+        get() = Bukkit.getOfflinePlayer(uuid)
 
-    fun name(): String
-    {
-        return player().name ?: ""
-    }
+    val name: String
+        get() = player.name ?: ""
 
     fun reset()
     {

@@ -76,7 +76,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
 
         return when (info)
         {
-            "name" -> user.name()
+            "name" -> user.name
             "value" ->
             {
                 return when (leaderboard.type)
