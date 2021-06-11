@@ -100,14 +100,14 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
         return leaderboard.getPlacement(user).toString()
     }
 
-    private fun round(number: Double, input: String): String?
+    private fun round(number: Double, input: String): String
     {
         if (input.isEmpty())
         {
             return String.format("%.2f", number)
         }
 
-        val decimals = input.substringAfter('_').toIntOrNull() ?: return null
+        val decimals = input.substringAfter('_').toIntOrNull() ?: String.format("%.2f", number)
         return String.format("%.${decimals}f", number)
     }
 }
