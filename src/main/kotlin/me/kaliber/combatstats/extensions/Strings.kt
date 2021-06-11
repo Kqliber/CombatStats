@@ -38,12 +38,5 @@ fun List<String>.executeCmd(sender: CommandSender, player: Player)
 
 fun String.getPlayer(): OfflinePlayer?
 {
-    Bukkit.getOfflinePlayers().forEach()
-    {
-        if (it.name == this)
-        {
-            return it
-        }
-    }
-    return null
+    return Bukkit.getOfflinePlayers().firstOrNull { this == it.name }
 }
