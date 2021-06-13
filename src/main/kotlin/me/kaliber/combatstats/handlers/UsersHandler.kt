@@ -49,7 +49,8 @@ class UsersHandler(plugin: CombatStatsPlugin)
             userData.createNewFile()
         }
 
-        userData.listFiles()?.forEach()
+        val files = userData.listFiles() ?: return
+        files.forEach()
         {
             val uuid = UUID.fromString(it.nameWithoutExtension)
             users[uuid] = gson.fromJson(it.readText(), User::class.java)
