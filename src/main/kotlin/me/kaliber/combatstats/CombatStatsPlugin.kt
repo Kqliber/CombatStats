@@ -41,7 +41,8 @@ class CombatStatsPlugin : JavaPlugin()
         loadConfig()
         usersHandler.loadUsers()
 
-        val interval = Config.SAVE_DATA_INTERVAL.int * 20
+        val interval = Config.SAVE_DATA_INTERVAL.int * 20 // convert seconds to ticks
+        logger.info("save-data-interval set to every ${interval / 20} seconds")
         saveData.runTaskTimer(this, 0L, interval)
         updateLeaderboardTask.runTaskTimer(this, 0L, interval)
     }
