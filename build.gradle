@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib'
 
     // command framework
-    implementation 'me.mattstudios.utils:matt-framework:1.4'
+    implementation 'me.mattstudios.utils:matt-framework:1.4.6'
 
     // adventure api
     implementation 'net.kyori:adventure-platform-bukkit:4.0.0-SNAPSHOT'

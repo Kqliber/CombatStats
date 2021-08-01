@@ -1,6 +1,5 @@
 package me.kaliber.combatstats.config
 
-import java.io.File
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.extensions.message
 
@@ -21,7 +20,7 @@ class ConfigManager(private val plugin: CombatStatsPlugin)
             }
             it.load(config)
         }
-        config.save(File(plugin.dataFolder, "config.yml"))
+        config.save(plugin.dataFolder.resolve("config.yml"))
         registerCmdUsages()
     }
 
