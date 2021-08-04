@@ -36,6 +36,7 @@ class CombatStatsPlugin : JavaPlugin()
         commandManager = CommandManager(this)
         adventure = BukkitAudiences.create(this)
 
+        register()
 
         loadConfig()
         usersHandler.loadUsers()
