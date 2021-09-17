@@ -1,8 +1,0 @@
-name: CombatStats
-version: ${version}
-main: me.kaliber.combatstats.CombatStatsPlugin
-prefix: CombatStats
-depend: [PlaceholderAPI]
-authors: [Kaliber]
-description: Record Combat Statistics
-api-version: 1.13

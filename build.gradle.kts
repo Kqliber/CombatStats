@@ -1,9 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import dev.triumphteam.helper.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.5.21"
     id("com.github.johnrengelman.shadow") version "7.0.0"
+    id("me.mattstudios.triumph") version "0.2.2"
 }
 
 group = "me.kaliber"
@@ -12,22 +14,30 @@ version = "1.0"
 repositories {
     mavenCentral()
 
-    maven("https://papermc.io/repo/repository/maven-public/")
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi")
+    paper()
+    papi()
 }
 
 dependencies {
     // kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation(kotlin("stdlib"))
 
-    // command framework
-    implementation("me.mattstudios.utils:matt-framework:1.4.6")
+    implementation(
+        triumph("cmd", "1.4.6"), // command framework
+        adventure("bukkit", "4.0.0-SNAPSHOT") // adventure
+    )
 
-    // adventure api
-    implementation("net.kyori:adventure-platform-bukkit:4.0.0-SNAPSHOT")
+    compileOnly(
+        paper("1.17.1"),
+        papi("2.10.10")
+    )
+}
 
-    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
-    compileOnly("me.clip:placeholderapi:2.10.9")
+bukkit {
+    name = "CombatStats"
+    description = "Record Combat Statistics"
+    depend = listOf("PlaceholderAPI")
+    apiVersion = "1.13"
 }
 
 tasks {
@@ -43,10 +53,4 @@ tasks {
         archiveFileName.set("CombatStats-${project.version}.jar")
     }
 
-    withType<ProcessResources> {
-        filesMatching("**/plugin.yml") {
-            expand("version" to version)
-        }
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    }
 }

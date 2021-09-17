@@ -1,5 +1,6 @@
 package me.kaliber.combatstats
 
+import dev.triumphteam.annotations.BukkitMain
 import me.kaliber.combatstats.commands.HelpCommand
 import me.kaliber.combatstats.commands.MainCommand
 import me.kaliber.combatstats.commands.ReloadCommand
@@ -19,6 +20,7 @@ import me.mattstudios.mf.base.CommandManager
 import net.kyori.adventure.platform.bukkit.BukkitAudiences
 import org.bukkit.plugin.java.JavaPlugin
 
+@BukkitMain
 class CombatStatsPlugin : JavaPlugin()
 {
 
