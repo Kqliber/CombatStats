@@ -35,7 +35,7 @@ class UsersHandler(plugin: CombatStatsPlugin)
 
     fun sortLeaderboard(type: LeaderboardType): List<User>
     {
-        return LeaderboardSorter().sort(type, users.values)
+        return LeaderboardSorter().sort(type, users.values.toSet())
     }
 
     /**
