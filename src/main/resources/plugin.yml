@@ -1,5 +1,5 @@
 name: CombatStats
-version: @version@
+version: ${version}
 main: me.kaliber.combatstats.CombatStatsPlugin
 prefix: CombatStats
 depend: [PlaceholderAPI]
