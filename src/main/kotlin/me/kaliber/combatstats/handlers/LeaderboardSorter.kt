@@ -13,7 +13,7 @@ class LeaderboardSorter
             LeaderboardType.KILLS -> sortKills(values)
             LeaderboardType.KILLSTREAK -> sortKillstreaks(values)
             LeaderboardType.HIGHESTKILLSTREAK -> sortHighestKillstreaks(values)
-            else -> sortKDRs(values)
+            LeaderboardType.KDR -> sortKDRs(values)
         }
     }
 
