@@ -76,7 +76,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
             return String.format("%.2f", number)
         }
 
-        val decimals = input.substringAfter('_').toIntOrNull() ?: String.format("%.2f", number)
+        val decimals = input.substringAfter('_').toIntOrNull() ?: 2
         return String.format("%.${decimals}f", number)
     }
 }
