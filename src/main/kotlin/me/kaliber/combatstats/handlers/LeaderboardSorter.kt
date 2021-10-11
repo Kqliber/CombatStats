@@ -19,22 +19,22 @@ class LeaderboardSorter
 
     private fun sortKills(values: Collection<User>): List<User>
     {
-        return values.sortedByDescending { it.kills }
+        return values.sortedByDescending(User::kills)
     }
 
     private fun sortKillstreaks(values: Collection<User>): List<User>
     {
-        return values.sortedByDescending { it.killstreak }
+        return values.sortedByDescending(User::killstreak)
     }
 
     private fun sortHighestKillstreaks(values: Collection<User>): List<User>
     {
-        return values.sortedByDescending { it.highestKillstreak }
+        return values.sortedByDescending(User::highestKillstreak)
     }
 
     private fun sortKDRs(values: Collection<User>): List<User>
     {
-        return values.sortedByDescending { it.kdr }
+        return values.sortedByDescending(User::kdr)
     }
 
 }
