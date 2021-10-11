@@ -1,42 +1,14 @@
 package me.kaliber.combatstats.placeholders
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import me.kaliber.combatstats.leaderboard.LeaderboardType
 import me.kaliber.combatstats.CombatStatsPlugin
-import org.bukkit.OfflinePlayer
+import me.kaliber.combatstats.user.User
 
-class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExpansion()
+class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpansion("combatstats", plugin)
 {
 
-    override fun getAuthor(): String
+    override fun request(user: User, input: String): Any?
     {
-        return "Kaliber"
-    }
-
-    override fun getVersion(): String
-    {
-        return plugin.description.version
-    }
-
-    override fun getIdentifier(): String
-    {
-        return "combatstats"
-    }
-
-    override fun canRegister(): Boolean
-    {
-        return true
-    }
-
-    override fun persist(): Boolean
-    {
-        return true
-    }
-
-    override fun onRequest(offlinePlayer: OfflinePlayer, input: String): String?
-    {
-        val user = plugin.usersHandler[offlinePlayer]
-
         if (input.startsWith("kdr_rounded"))
         {
             return round(user.kdr, input.substringAfter("kdr_rounded"))
@@ -54,17 +26,17 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
 
         return when (input)
         {
-            "kills" -> user.kills.toString()
-            "deaths" -> user.deaths.toString()
-            "kdr" -> user.kdr.toString()
-            "killstreak" -> user.killstreak.toString()
-            "highestkillstreak" -> user.highestKillstreak.toString()
+            "kills" -> user.kills
+            "deaths" -> user.deaths
+            "kdr" -> user.kdr
+            "killstreak" -> user.killstreak
+            "highestkillstreak" -> user.highestKillstreak
             "last_kill" -> user.lastKill
             else -> null
         }
     }
 
-    private fun getTop(input: String): String?
+    private fun getTop(input: String): Any?
     {
         val (type, info, position) = input.split('_').takeIf { it.size >= 3 } ?: return null
 
@@ -78,23 +50,23 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : PlaceholderExp
             {
                 return when (leaderboard.type)
                 {
-                    LeaderboardType.KILLS -> user.kills.toString()
-                    LeaderboardType.KILLSTREAK -> user.killstreak.toString()
-                    LeaderboardType.HIGHESTKILLSTREAK -> user.highestKillstreak.toString()
-                    LeaderboardType.KDR -> user.kdr.toString()
+                    LeaderboardType.KILLS -> user.kills
+                    LeaderboardType.KILLSTREAK -> user.killstreak
+                    LeaderboardType.HIGHESTKILLSTREAK -> user.highestKillstreak
+                    LeaderboardType.KDR -> user.kdr
                 }
             }
             else -> null
         }
     }
 
-    private fun getPlacement(input: String): String?
+    private fun getPlacement(input: String): Int?
     {
         val (type, username) = input.split('_').takeIf { it.size >= 2 } ?: return null
         val user = plugin.usersHandler[username] ?: return null
         val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
 
-        return leaderboard.getPlacement(user).toString()
+        return leaderboard.getPlacement(user)
     }
 
     private fun round(number: Double, input: String): String
