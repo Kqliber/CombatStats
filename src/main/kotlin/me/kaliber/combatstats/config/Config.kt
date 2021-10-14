@@ -7,6 +7,8 @@ import org.bukkit.plugin.java.JavaPlugin
 enum class Config(val path: String, val default: Any)
 {
 
+    SAVE_DATA_INTERVAL("settings.save-data-interval", 300),
+    STORAGE_METHOD("settings.storage-method", "json"),
     PLAYER_NOT_FOUND("messages.player-not-found", "&7Player not found."),
     PLAYER_COMMAND_ONLY("messages.player-command-only", "&7Only players can execute this command."),
     NO_PERMISSION("messages.no-permission", "&cNo permission."),
@@ -15,7 +17,6 @@ enum class Config(val path: String, val default: Any)
     HELP_COMMAND("messages.help-command", helpCommand),
     STATS_COMMAND("messages.stats-command", statsCommand),
     RELOAD_COMMAND("messages.reload-command", "&bConfig reloaded."),
-    SAVE_DATA_INTERVAL("save-data-interval", 300),
     REWARDS_ENABLED("rewards.enabled", true),
     KILLER_COMMANDS("rewards.killer.commands", killerCommands),
     KILLER_MESSAGES("rewards.killer.messages", killerMessages),

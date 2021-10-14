@@ -32,6 +32,11 @@
 # - %dead% - get the player's name who died
 
 # » Configuration Settings
+
+# settings:
+#   save-data-interval: (Set the delay between when each task will be executed, in seconds)
+#   storage-method: (Set the method for storing data: Available methods: json)
+
 # messages:
 #   player-command-only: (message to be displayed when the command is only for players)
 #   player-not-found: (message to be displayed when the player can not be found)
@@ -43,11 +48,6 @@
 #   stats-command:
 #     - (Displays a message when "/combatstats stats [player]" is run.)
 #     - If a player argument is present in the command, the command will return the statistics for that player
-
-# save-data-interval:
-# Set the delay between when each task will be executed, in seconds
-# Tasks include: Saving player data to file and updating leaderboards
-# This setting will only change upon restart
 
 # rewards:
 #   enabled: (Specify whether rewards should be enabled or not)
@@ -61,7 +61,9 @@
 #       - (execute commands for the dead player)
 #     messages:
 #      - (send messages to the dead player)
-
+settings:
+  save-data-interval: 300
+  storage-method: json
 messages:
   player-command-only: '&7Only players can execute this command.'
   player-not-found: '&7Player not found.'
@@ -86,8 +88,6 @@ messages:
     - '&9%player_name%''s Stats &8- '
     - '&bKillstreak&7: &f%combatstats_killstreak%'
     - ''
-
-save-data-interval: 300
 
 rewards:
   enabled: true
