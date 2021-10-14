@@ -11,6 +11,7 @@ class PlayerQuitListener(private val plugin: CombatStatsPlugin) : Listener
     @EventHandler
     fun PlayerQuitEvent.onLeave()
     {
-        plugin.usersHandler.save(player.uniqueId)
+        val user = plugin.usersHandler[player]
+        plugin.usersHandler.storage.save(user)
     }
 }
