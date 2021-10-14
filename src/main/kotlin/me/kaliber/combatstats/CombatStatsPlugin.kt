@@ -83,11 +83,8 @@ class CombatStatsPlugin : JavaPlugin()
 
         if (!file.exists())
         {
-            file.parentFile.mkdirs()
-            file.createNewFile()
-            config.options().copyDefaults(true)
+            saveDefaultConfig()
         }
-        saveConfig()
         conf.reload()
     }
 }
