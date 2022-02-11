@@ -3,7 +3,7 @@ import dev.triumphteam.helper.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("me.mattstudios.triumph") version "0.2.2"
 }
@@ -19,16 +19,15 @@ repositories {
 }
 
 dependencies {
-    // kotlin
-    implementation(kotlin("stdlib", "1.5.31"))
 
     implementation(
         triumph("cmd", "1.4.6"), // command framework
-        adventure("bukkit", "4.0.0-SNAPSHOT") // adventure
+        adventure("bukkit", "4.0.1"), // adventure
+        kotlin("stdlib", "1.6.10").toString()
     )
 
     compileOnly(
-        paper("1.17.1"),
+        paper("1.18.1"),
         papi("2.10.10")
     )
 }
