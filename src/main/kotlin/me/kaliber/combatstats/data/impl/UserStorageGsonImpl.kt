@@ -28,7 +28,7 @@ class UserStorageGsonImpl(private val plugin: CombatStatsPlugin) : UserStorage
         {
             return plugin.usersHandler.set(uuid, User(uuid))
         }
-        gson.fromJson(file.readText(), User::class.java)
+        plugin.usersHandler[uuid] = gson.fromJson(file.readText(), User::class.java)
     }
 
     override fun saveAll()
