@@ -4,10 +4,7 @@ import me.kaliber.combatstats.leaderboard.LeaderboardType
 import me.kaliber.combatstats.extensions.getPlayer
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.user.User
-import me.kaliber.combatstats.config.Config
-import me.kaliber.combatstats.data.base.UserStorage
 import me.kaliber.combatstats.data.impl.UserStorageGsonImpl
-import me.kaliber.combatstats.data.impl.UserStorageMySQLImpl
 import org.bukkit.OfflinePlayer
 import java.util.UUID
 
@@ -18,9 +15,7 @@ class UsersHandler(private val plugin: CombatStatsPlugin)
     val values: Set<User>
         get() = users.values.toSet()
 
-    // TODO: make this not a getter. variable is initialized before Config
-    val storage: UserStorage
-        get() = if (Config.STORAGE_METHOD.string == "mysql") UserStorageMySQLImpl() else UserStorageGsonImpl(plugin)
+    val storage = UserStorageGsonImpl(plugin)
 
     operator fun get(uuid: UUID): User
     {
