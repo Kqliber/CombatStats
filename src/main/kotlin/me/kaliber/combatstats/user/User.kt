@@ -9,13 +9,13 @@ data class User(
     var killstreak: Int = 0,
     var highestKillstreak: Int = 0,
     var lastKill: String = "",
-    var kills: Int = 0,
+    var kills: MutableList<Long> = mutableListOf(),
     var deaths: Int = 0
-    )
+)
 {
 
     val kdr: Double
-        get() = if (deaths == 0) kills.toDouble() else kills.toDouble() / deaths.toDouble()
+        get() = if (deaths == 0) kills.size.toDouble() else kills.size.toDouble() / deaths.toDouble()
 
     val player: OfflinePlayer
         get() = Bukkit.getOfflinePlayer(uuid)

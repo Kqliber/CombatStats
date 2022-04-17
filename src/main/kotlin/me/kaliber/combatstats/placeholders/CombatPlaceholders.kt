@@ -26,7 +26,7 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
 
         return when (input)
         {
-            "kills" -> user.kills
+            "kills" -> user.kills.size
             "deaths" -> user.deaths
             "kdr" -> user.kdr
             "killstreak" -> user.killstreak

@@ -17,9 +17,9 @@ class LeaderboardSorter
         }
     }
 
-    private fun sortKills(values: Collection<User>): List<User>
+    private fun sortKills(values: Collection<User>, epoch: Long = 0L): List<User>
     {
-        return values.sortedByDescending(User::kills)
+        return values.sortedByDescending { it.kills.size }
     }
 
     private fun sortKillstreaks(values: Collection<User>): List<User>
