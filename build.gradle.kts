@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.5.21"
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("me.mattstudios.triumph") version "0.2.2"
+    id("me.mattstudios.triumph") version "0.2.8"
 }
 
 group = "me.kaliber"
@@ -24,7 +24,7 @@ dependencies {
 
     implementation(
         triumph("cmd", "1.4.6"), // command framework
-        adventure("bukkit", "4.0.0-SNAPSHOT") // adventure
+        adventure("bukkit", "4.1.0") // adventure
     )
 
     compileOnly(
