@@ -36,6 +36,7 @@ dependencies {
 bukkit {
     name = "CombatStats"
     description = "Record Combat Statistics"
+    authors = listOf("Kaliber")
     depend = listOf("PlaceholderAPI")
     apiVersion = "1.13"
 }
