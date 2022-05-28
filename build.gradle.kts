@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("me.mattstudios.triumph") version "0.2.2"
+    id("me.mattstudios.triumph") version "0.2.8"
 }
 
 group = "me.kaliber"
