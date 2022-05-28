@@ -38,5 +38,5 @@ fun List<String>.executeCmd(sender: CommandSender, player: Player)
 
 fun String.getPlayer(): OfflinePlayer?
 {
-    return Bukkit.getOfflinePlayers().firstOrNull { this == it.name }
+    return Bukkit.getOfflinePlayers().firstOrNull { equals(it.name, true) }
 }
