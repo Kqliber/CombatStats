@@ -33,10 +33,11 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener
         player.reset()
         player.deaths++
 
-        with(RewardsHandler())
+        with(RewardsHandler(plugin))
         {
-        runKillerCommands(killer, entity)
-        runPlayerCommands(entity, killer)
+            runKillstreakRewards(killer, entity)
+            runKillerCommands(killer, entity)
+            runPlayerCommands(entity, killer)
         }
     }
 }
