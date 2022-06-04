@@ -38,9 +38,10 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
 
     private fun getTop(input: String): Any?
     {
-        val (type, info, position) = input.split('_').takeIf { it.size >= 3 } ?: return null
+        val (type, dateType, info, position) = input.split('_').takeIf { it.size >= 4 } ?: return null
 
-        val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
+        val leaderboardType = type + '_' + dateType
+        val leaderboard = LeaderboardType.match(leaderboardType)?.let(plugin.leaderboardHandler::get) ?: return null
         val user = position.toIntOrNull()?.let(leaderboard::getEntry) ?: return null
 
         return when (info)
@@ -50,10 +51,10 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
             {
                 return when (leaderboard.type)
                 {
-                    LeaderboardType.KILLS -> user.kills
-                    LeaderboardType.KILLSTREAK -> user.killstreak
-                    LeaderboardType.HIGHESTKILLSTREAK -> user.highestKillstreak
-                    LeaderboardType.KDR -> user.kdr
+                    LeaderboardType.KILLSTREAK_ALLTIME -> user.killstreak
+                    LeaderboardType.HIGHESTKILLSTREAK_ALLTIME -> user.highestKillstreak
+                    LeaderboardType.KDR_ALLTIME -> user.kdr
+                    else -> user.kills.size
                 }
             }
             else -> null
@@ -62,9 +63,10 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
 
     private fun getPlacement(input: String): Int?
     {
-        val (type, username) = input.split('_').takeIf { it.size >= 2 } ?: return null
+        val (type, dateType, username) = input.split('_').takeIf { it.size >= 3 } ?: return null
+        val leaderboardType = type + '_' + dateType
         val user = plugin.usersHandler[username] ?: return null
-        val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
+        val leaderboard = LeaderboardType.match(leaderboardType)?.let(plugin.leaderboardHandler::get) ?: return null
 
         return leaderboard.getPlacement(user)
     }

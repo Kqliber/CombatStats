@@ -1,7 +1,7 @@
 
 # CombatStats v@version@ by Kaliber
 
-# Spigot Page:
+# Spigot Page: https://spigotmc.org/resources/combatstats.94932/
 # Github Link: https://github.com/Kqliber/CombatStats
 # Create an issue on GitHub: https://github.com/Kqliber/CombatStats/issues
 
@@ -20,7 +20,15 @@
 # - %combatstats_placement_<type>_<player>% - returns the player's position in the leaderboard type
 # - %combatstats_top_<type>_<info>_<position>% - returns the name/value who is at the position specified in the leaderboard type
 
-# <TYPE> - specifies which leaderboard to use: kills/killstreak/highestkillstreak/kdr
+# <TYPE> - specifies which leaderboard to use:
+#  - kills_daily
+#  - kills_weekly
+#  - kills_monthly
+#  - kills_alltime
+#  - kdr_alltime
+#  - killstreak_alltime
+#  - highestkillstreak_alltime
+# (maybe timed leaderboard for kdr, killstreak & highestkillstreak soon?)
 # <INFO> - specifies which information to display: name/value (name being the player's name, or value being the value retrieved from the specified leaderboard type)
 # <POSITION> - the position of the leaderboard to get
 
