@@ -15,9 +15,11 @@ enum class LeaderboardType(val time: Long)
 
     companion object
     {
+        val VALUES = values().toList()
+
         fun match(type: String): LeaderboardType?
         {
-            return values().find { type.equals(it.name, true) }
+            return VALUES.find { type.equals(it.name, true) }
         }
     }
 }
