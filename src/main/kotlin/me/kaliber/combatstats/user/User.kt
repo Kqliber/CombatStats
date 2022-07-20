@@ -10,7 +10,8 @@ data class User(
     var highestKillstreak: Int = 0,
     var lastKill: String = "",
     var kills: MutableList<Long> = mutableListOf(),
-    var deaths: Int = 0
+    var deaths: Int = 0,
+    var lastKillHealth: Double = 0.0
 )
 {
 

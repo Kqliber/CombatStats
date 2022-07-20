@@ -3,6 +3,8 @@ package me.kaliber.combatstats.placeholders
 import me.kaliber.combatstats.leaderboard.LeaderboardType
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.user.User
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpansion("combatstats", plugin)
 {
@@ -32,6 +34,11 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
             "killstreak" -> user.killstreak
             "highestkillstreak" -> user.highestKillstreak
             "last_kill" -> user.lastKill
+            "last_kill_health" -> user.lastKillHealth
+            "last_kill_hearts" -> {
+                val format = DecimalFormat("#.#").also { it.roundingMode = RoundingMode.HALF_UP }
+                format.format(user.lastKillHealth / 2)
+            }
             else -> null
         }
     }

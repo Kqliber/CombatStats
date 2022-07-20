@@ -29,6 +29,7 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener
 
         user.kills.add(System.currentTimeMillis())
         user.lastKill = player.name
+        user.lastKillHealth = killer.health
 
         player.reset()
         player.deaths++
