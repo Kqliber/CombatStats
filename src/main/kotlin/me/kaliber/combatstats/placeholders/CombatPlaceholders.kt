@@ -9,6 +9,8 @@ import java.text.DecimalFormat
 class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpansion("combatstats", plugin)
 {
 
+    private val decimalFormat = DecimalFormat("#.#").also { it.roundingMode = RoundingMode.HALF_UP }
+
     override fun request(user: User, input: String): Any?
     {
         if (input.startsWith("kdr_rounded"))
@@ -34,10 +36,11 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
             "killstreak" -> user.killstreak
             "highestkillstreak" -> user.highestKillstreak
             "last_kill" -> user.lastKill
-            "last_kill_health" -> user.lastKillHealth
+            "last_kill_health" -> {
+                decimalFormat.format(user.lastKillHealth)
+            }
             "last_kill_hearts" -> {
-                val format = DecimalFormat("#.#").also { it.roundingMode = RoundingMode.HALF_UP }
-                format.format(user.lastKillHealth / 2)
+                decimalFormat.format(user.lastKillHealth / 2)
             }
             else -> null
         }
