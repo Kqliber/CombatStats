@@ -26,7 +26,7 @@ enum class Config(val path: String, val default: Any)
     private var value: Any? = null
 
     val list: List<String>
-        get() = value as List<String>
+        get() = if (value is String) listOf(value as String) else value as List<String>
 
     val string: String
         get() = value as String

@@ -62,6 +62,10 @@ class RewardsHandler(private val plugin: CombatStatsPlugin)
 
     private fun List<String>.setPlaceholders(killer: Player, player: Player): List<String>
     {
+        if (isEmpty())
+        {
+            return emptyList()
+        }
         return map()
         {
             it.replace("%killer%", killer.name)
