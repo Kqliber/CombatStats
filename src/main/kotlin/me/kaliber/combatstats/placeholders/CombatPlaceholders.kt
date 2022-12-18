@@ -46,15 +46,12 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
         return when (info)
         {
             "name" -> user.name
-            "value" ->
+            "value" -> return when (leaderboard.type)
             {
-                return when (leaderboard.type)
-                {
-                    LeaderboardType.KILLS -> user.kills
-                    LeaderboardType.KILLSTREAK -> user.killstreak
-                    LeaderboardType.HIGHESTKILLSTREAK -> user.highestKillstreak
-                    LeaderboardType.KDR -> user.kdr
-                }
+                LeaderboardType.KILLS -> user.kills
+                LeaderboardType.KILLSTREAK -> user.killstreak
+                LeaderboardType.HIGHESTKILLSTREAK -> user.highestKillstreak
+                LeaderboardType.KDR -> user.kdr
             }
             else -> null
         }
@@ -62,7 +59,12 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
 
     private fun getPlacement(input: String): Int?
     {
-        val (type, username) = input.split('_').takeIf { it.size >= 2 } ?: return null
+        if (!input.contains('_'))
+        {
+            return null
+        }
+        val type = input.substringBefore('_')
+        val username = input.substringAfter('_')
         val user = plugin.usersHandler[username] ?: return null
         val leaderboard = LeaderboardType.match(type)?.let(plugin.leaderboardHandler::get) ?: return null
 
