@@ -70,7 +70,14 @@ class CombatPlaceholders(private val plugin: CombatStatsPlugin) : AbstractExpans
 
     private fun getPlacement(input: String): Int?
     {
-        val (type, dateType, username) = input.split('_').takeIf { it.size >= 3 } ?: return null
+        if  (!input.contains('_'))
+        {
+            return null
+        }
+
+        val type = input.substringBefore('_')
+        val dateType = input.substringAfter('_').substringBefore('_')
+        val username = input.substringAfter(dateType + '_')
         val leaderboardType = type + '_' + dateType
         val user = plugin.usersHandler[username] ?: return null
         val leaderboard = LeaderboardType.match(leaderboardType)?.let(plugin.leaderboardHandler::get) ?: return null
