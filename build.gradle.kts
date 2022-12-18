@@ -3,7 +3,7 @@ import dev.triumphteam.helper.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.6.0"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("me.mattstudios.triumph") version "0.2.8"
 }
