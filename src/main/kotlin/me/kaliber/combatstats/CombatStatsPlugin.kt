@@ -45,8 +45,8 @@ class CombatStatsPlugin : JavaPlugin()
 
         val interval = Config.SAVE_DATA_INTERVAL.int * 20 // convert seconds to ticks
         logger.info("save-data-interval set to every ${interval / 20} seconds")
-        saveData.runTaskTimer(this, 0L, interval)
-        updateLeaderboardTask.runTaskTimer(this, 0L, interval)
+        saveData.runTaskTimerAsynchronously(this, 0L, interval)
+        updateLeaderboardTask.runTaskTimerAsynchronously(this, 0L, interval)
     }
 
     override fun onDisable()
