@@ -1,5 +1,6 @@
 package me.kaliber.combatstats.placeholders
 
+import me.clip.placeholderapi.PlaceholderAPI
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import me.kaliber.combatstats.CombatStatsPlugin
 import me.kaliber.combatstats.user.User
@@ -22,5 +23,6 @@ abstract class AbstractExpansion(
 
     abstract fun request(user: User, input: String): Any?
 
-    override fun onRequest(player: OfflinePlayer, params: String) = request(plugin.usersHandler[player], params).toString()
+    override fun onRequest(player: OfflinePlayer, params: String) =
+        request(plugin.usersHandler[player], PlaceholderAPI.setBracketPlaceholders(player, params)).toString()
 }

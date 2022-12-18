@@ -11,6 +11,6 @@ class PlayerJoinListener(private val plugin: CombatStatsPlugin) : Listener
     @EventHandler
     fun PlayerJoinEvent.onJoin()
     {
-        plugin.usersHandler.load(player.uniqueId)
+        plugin.usersHandler.storage.load(player.uniqueId)
     }
 }

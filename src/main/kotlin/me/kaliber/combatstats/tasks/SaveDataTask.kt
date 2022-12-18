@@ -7,6 +7,6 @@ class SaveDataTask(private val plugin: CombatStatsPlugin) : BukkitRunnable()
 {
     override fun run()
     {
-        plugin.usersHandler.saveUsers()
+        plugin.usersHandler.storage.saveAll()
     }
 }

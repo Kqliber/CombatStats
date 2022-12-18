@@ -6,7 +6,8 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 
-class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
+class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener
+{
 
     @EventHandler(ignoreCancelled = true)
     fun PlayerDeathEvent.onDeath()
@@ -26,16 +27,18 @@ class PlayerDeathListener(private val plugin: CombatStatsPlugin) : Listener {
             user.highestKillstreak = user.killstreak
         }
 
-        user.kills++
+        user.kills.add(System.currentTimeMillis())
         user.lastKill = player.name
+        user.lastKillHealth = killer.health
 
         player.reset()
         player.deaths++
 
-        with(RewardsHandler())
+        with(RewardsHandler(plugin))
         {
-        runKillerCommands(killer, entity)
-        runPlayerCommands(entity, killer)
+            runKillstreakRewards(killer, entity)
+            runKillerCommands(killer, entity)
+            runPlayerCommands(entity, killer)
         }
     }
 }

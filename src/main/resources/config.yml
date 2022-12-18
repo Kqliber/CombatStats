@@ -1,7 +1,7 @@
 
 # CombatStats v@version@ by Kaliber
 
-# Spigot Page:
+# Spigot Page: https://spigotmc.org/resources/combatstats.94932/
 # Github Link: https://github.com/Kqliber/CombatStats
 # Create an issue on GitHub: https://github.com/Kqliber/CombatStats/issues
 
@@ -20,7 +20,15 @@
 # - %combatstats_placement_<type>_<player>% - returns the player's position in the leaderboard type
 # - %combatstats_top_<type>_<info>_<position>% - returns the name/value who is at the position specified in the leaderboard type
 
-# <TYPE> - specifies which leaderboard to use: kills/killstreak/highestkillstreak/kdr
+# <TYPE> - specifies which leaderboard to use:
+#  - kills_daily
+#  - kills_weekly
+#  - kills_monthly
+#  - kills_alltime
+#  - kdr_alltime
+#  - killstreak_alltime
+#  - highestkillstreak_alltime
+# (maybe timed leaderboard for kdr, killstreak & highestkillstreak soon?)
 # <INFO> - specifies which information to display: name/value (name being the player's name, or value being the value retrieved from the specified leaderboard type)
 # <POSITION> - the position of the leaderboard to get
 
@@ -32,6 +40,11 @@
 # - %dead% - get the player's name who died
 
 # » Configuration Settings
+
+# settings:
+#   save-data-interval: (Set the delay between when each task will be executed, in seconds)
+#   storage-method: (Set the method for storing data: Available methods: json)
+
 # messages:
 #   player-command-only: (message to be displayed when the command is only for players)
 #   player-not-found: (message to be displayed when the player can not be found)
@@ -43,11 +56,6 @@
 #   stats-command:
 #     - (Displays a message when "/combatstats stats [player]" is run.)
 #     - If a player argument is present in the command, the command will return the statistics for that player
-
-# save-data-interval:
-# Set the delay between when each task will be executed, in seconds
-# Tasks include: Saving player data to file and updating leaderboards
-# This setting will only change upon restart
 
 # rewards:
 #   enabled: (Specify whether rewards should be enabled or not)
@@ -61,7 +69,9 @@
 #       - (execute commands for the dead player)
 #     messages:
 #      - (send messages to the dead player)
-
+settings:
+  save-data-interval: 300
+  storage-method: json
 messages:
   player-command-only: '&7Only players can execute this command.'
   player-not-found: '&7Player not found.'
@@ -87,8 +97,6 @@ messages:
     - '&bKillstreak&7: &f%combatstats_killstreak%'
     - ''
 
-save-data-interval: 300
-
 rewards:
   enabled: true
   killer:
@@ -101,3 +109,9 @@ rewards:
     - 'eco take %player_name% 10'
     messages:
     - '&fYou were killed by &c%killer%'
+  killstreaks:
+    5:
+      commands:
+        - 'broadcast &b%player_name% &fis on a &b%combatstats_killstreak% &fkillstreak!'
+      messages:
+        - '&fYou are on a &b%combatstats_killstreak% &fkillstreak!'

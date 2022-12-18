@@ -13,13 +13,7 @@ class LeaderboardHandler(private val plugin: CombatStatsPlugin)
     {
         LeaderboardType.values().forEach()
         {
-            when(it)
-            {
-                LeaderboardType.KILLS -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
-                LeaderboardType.KILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
-                LeaderboardType.HIGHESTKILLSTREAK -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
-                LeaderboardType.KDR -> leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
-            }
+            leaderboard[it] = Leaderboard(it, plugin.usersHandler.sortLeaderboard(it))
         }
     }
 
